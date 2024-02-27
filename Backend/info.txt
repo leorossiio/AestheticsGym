@@ -1,0 +1,1 @@
+Utilizaremos Python e MySql para o backend
