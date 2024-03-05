@@ -50,13 +50,6 @@ body {
     width: 420px;
 }
 
-.eye-toggle {
-    position: absolute;
-    margin-left: -25px;
-    margin-top: -28px;
-    cursor: pointer;
-}
-
 .formLogin h1 {
     padding: 0;
     margin: 0;
