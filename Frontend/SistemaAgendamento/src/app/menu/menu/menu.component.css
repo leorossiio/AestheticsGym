@@ -1,0 +1,34 @@
+.navbar{
+    background-color: black;
+    padding: 0 30px 0 30px;
+    height: 100px;
+}
+
+ul{
+    color: white;
+    display: flex;
+    list-style-type: none;
+    margin: 10px;
+    gap: 20px;
+}
+
+.lista a {
+    text-decoration: none; 
+    color: inherit; 
+  }
+
+
+.logo{
+    height: 80px;
+    width: 80px;
+    cursor: pointer;
+}  
+
+
+.btn-outline-dark {
+border: 1.5px solid white; /* Define a largura, o estilo e a cor da borda do botão */
+color: white;
+}
+.btn-primary{
+    margin-left: 8px;
+}
