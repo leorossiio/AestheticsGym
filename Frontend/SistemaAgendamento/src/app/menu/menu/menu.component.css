@@ -25,6 +25,10 @@ ul{
 }  
 
 
+.btn{
+    width: 90px;
+}
+
 .btn-outline-dark {
 border: 1.5px solid white; /* Define a largura, o estilo e a cor da borda do botão */
 color: white;
