@@ -59,6 +59,10 @@ body {
     background-color: #0d6efd;
 }
 
+.card:hover p{
+    color: white!important;
+}
+
 
 .card-group {
     justify-content: center;
