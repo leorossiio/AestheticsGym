@@ -1,1 +1,90 @@
-<body><p>home-pacotes works!</p></body>
+<body>
+  <div class="planos">
+    <p class="title">Pacotes</p>
+    <h1 style="margin-bottom: 2rem">Nossos pacotes</h1>
+    <div class="tipos mb-5">
+      <div class="tipos-container">
+        <button
+          *ngIf="mensaisSelecionado"
+          type="button"
+          class="btn btn-dark"
+          (click)="alterarTipo()"
+        >
+          Mensais
+        </button>
+        <button
+          *ngIf="!mensaisSelecionado"
+          type="button"
+          class="btn btn-light"
+          (click)="alterarTipo()"
+        >
+          Mensais
+        </button>
+        <button
+          *ngIf="!anuaisSelecionado"
+          type="button"
+          class="btn btn-light"
+          (click)="alterarTipo()"
+        >
+          Anuais
+        </button>
+        <button
+          *ngIf="anuaisSelecionado"
+          type="button"
+          class="btn btn-dark"
+          (click)="alterarTipo()"
+        >
+          Anuais
+        </button>
+      </div>
+    </div>
+
+    <div class="card-group">
+      <div class="card">
+        <div class="card-body">
+          <p class="title">Pacote Afrodite</p>
+          <h1 class="card-preco">
+            R$ {{ pacotes.afrodite | number : "1.2-2" }}
+          </h1>
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <p class="title">Pacote Hércules</p>
+          <h1 class="card-preco">
+            R$ {{ pacotes.hercules | number : "1.2-2" }}
+          </h1>
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <p class="title">Pacote Hades</p>
+          <h1 class="card-preco">R$ {{ pacotes.hades | number : "1.2-2" }}</h1>
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <p class="title">Pacote Zeus</p>
+          <h1 class="card-preco">R$ {{ pacotes.zeus | number : "1.2-2" }}</h1>
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
+          <ul>
+            <li>Acesso ilimitado à academia</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
