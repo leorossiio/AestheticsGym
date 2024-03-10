@@ -1,61 +1,74 @@
-footer{
+.rodape {
     background-color: rgb(0, 0, 0);
     color: white;
-    padding: 0 30px 0 30px;
+    height: auto;
+    width: 100%;
+    font-size: 14px;
+    font-family: helvetica;
 }
-.logo{
+
+.rodape a {
+    text-decoration: none;
+    color: white;
+}
+
+.rodape p {
+    margin-bottom: 5px;
+}
+
+.logo {
     height: 120px;
     width: 120px;
     cursor: pointer;
-    margin: center;
-    margin-left: 60px;
-}  
-
-.subtitle{
-    margin-left: 30px;
-    margin-bottom: 20px;
 }
 
-ul{
+.rodape-container {
     display: flex;
-    list-style-type: none;
-    gap: 20px;
-    text-align: right;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: auto;
+    align-items: stretch;
+    padding: 60px 10px 40px 10px;
 }
 
-
-.tudo{
+.rodape-div-logo,
+.rodape-div-dev,
+.rodape-div-sup,
+.rodape-div-sociais,
+.rodape-div-outros {
     display: flex;
-    justify-content: space-between;
-    margin-left: 40px;
-    margin-right: 40px;
+    width: calc(100% / 5 - 20px);
+    padding: 10px;
+    align-items: flex-start;
+    justify-content: center;
 }
 
-#footer2{
-    margin: flex;   
-    justify-content: space-between;
-    margin-bottom: 20px;
-    gap: 40px;
-}
-.texto2{
-    font-size: 18px;
-    margin-left: 90px;
+.rodape span {
+    font-size: 20px;
+    color: white;
 }
 
-.texto3{
-    margin-right: 950px;
-    margin-left: 50px;
+.rodape-direitos {
+    width: calc(100% - 20px);
+    background-color: black;
+    padding: 1rem;
+    margin: 0px;
+    text-align: center;
 }
 
-.lista1{
-    display: flex;
-    list-style-type: none;
-    gap: 150px;
-    text-align: right;
-    margin-right: 60px;
-}
+/*mobile*/
+@media (max-width: 800px) {
 
-.desenvolvedores{
-    align-content: left;
-}
+    .rodape-div-logo,
+    .rodape-div-dev,
+    .rodape-div-sup,
+    .rodape-div-sociais,
+    .rodape-div-outros {
+        width: calc(50% - 20px);
+        padding: 10px;
+    }
 
+    .rodape-container {
+        padding: 60px 0px 40px 0px;
+    }
+}
