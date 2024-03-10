@@ -1,7 +1,8 @@
 .navbar{
     background-color: black;
-    padding: 0 30px 0 30px;
-    height: 100px;
+    padding: 10px 30px 10px 30px;
+    min-height: 100px;
+    height: auto;
 }
 
 ul{
@@ -35,4 +36,11 @@ color: white;
 }
 .btn-primary{
     margin-left: 8px;
+}
+
+@media (max-width: 800px) {
+    .navbar{
+        display: flex;
+        flex-direction: column;
+    }
 }
