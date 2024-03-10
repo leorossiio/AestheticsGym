@@ -1,0 +1,20 @@
+body {
+    color: white;
+    text-align: center;
+}
+
+.header-body {
+    height: 750px;
+    background-color: black;
+}
+
+.logo{
+    width: 150px;
+}
+
+.texto {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10rem 0 0 5rem;
+}
