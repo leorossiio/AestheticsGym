@@ -2,31 +2,19 @@ body {
     color: white;
     text-align: center;
     background-color: black;
-    height: 1100px;
+    /*
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url(../../../assets/imgs/academia-background.png);
+    */
 }
 
 .header-body {
     padding: 120px;
-    background-image: url(../../../assets/imgs/HeroSection.png);
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 
-.logo{
+.logo {
     width: 150px;
 }
 
-.texto {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 10rem 0 0 0rem;
-}
-
-h1{
-    font-size: 4rem;
-}
-h2{
-    font-size: 3rem;
-}

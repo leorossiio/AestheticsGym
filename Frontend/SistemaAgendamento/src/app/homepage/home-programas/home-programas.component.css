@@ -67,3 +67,11 @@ planos {
 .card-group {
     justify-content: center;
 }
+
+@media(max-width: 768px) {
+    .card-group {
+        display: flex!important;
+        flex-direction: column;
+        align-items: center;
+    }
+}
