@@ -1,1 +1,3 @@
-Utilizaremos Python e MySql para o backend
+O backend será em NODE JS -> TS
+banco de dados -> MongoDB
+
