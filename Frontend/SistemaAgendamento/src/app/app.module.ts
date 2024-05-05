@@ -13,6 +13,7 @@ import { HomeProgramasComponent } from './homepage/home-programas/home-programas
 import { HomeMidComponent } from './homepage/home-mid/home-mid.component';
 import { HomePacotesComponent } from './homepage/home-pacotes/home-pacotes.component';
 import { HomeHeaderComponent } from './homepage/home-header/home-header.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { HomeHeaderComponent } from './homepage/home-header/home-header.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
