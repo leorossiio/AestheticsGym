@@ -20,7 +20,7 @@ export class LoginComponent {
     {}
   fazerLogin() {
     if (this.usuario.login === this.loginAuth && this.usuario.senha === this.senhaAuth) {
-      this.router.navigate(['/tela-inicial']);
+      this.router.navigate(['/aesthetic']);
       alert("Login feito");
     }
     else{

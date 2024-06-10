@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { TelaAutenticadaComponent } from './tela-autenticada/tela-autenticada.component';
 
 import { MenuAuthComponent } from './tela-autenticada/components/menu-auth/menu-auth.component';
+import { ListaAlunoComponent } from './tela-autenticada/components/lista-aluno/lista-aluno.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { MenuAuthComponent } from './tela-autenticada/components/menu-auth/menu-
     HomeHeaderComponent,
     TelaAutenticadaComponent,
     MenuAuthComponent,
+    ListaAlunoComponent,
   ],
   imports: [
     BrowserModule,

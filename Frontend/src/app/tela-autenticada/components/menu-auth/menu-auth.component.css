@@ -13,9 +13,13 @@ ul{
     gap: 20px;
 }
 
-.lista a {
+.lista-menu a {
     text-decoration: none; 
     color: inherit; 
+    cursor: pointer;
+  }
+
+  .nav-lista-auth li{
     cursor: pointer;
   }
 

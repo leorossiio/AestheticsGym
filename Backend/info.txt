@@ -1,3 +1,0 @@
-O backend será em NODE JS -> TS
-banco de dados -> MongoDB
-

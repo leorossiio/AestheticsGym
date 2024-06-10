@@ -1,21 +1,25 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { TelaAutenticadaComponent } from './tela-autenticada/tela-autenticada.component';
+import { ListaAlunoComponent } from './tela-autenticada/components/lista-aluno/lista-aluno.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redireciona para /home por padrão
+  { path: 'home', component: HomepageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cadastro', component: CadastroComponent },
-  { path: 'home', component: HomepageComponent },
-
-  //tela-autetenticada:
-  { path: 'tela-inicial', component: TelaAutenticadaComponent },
-
+  {
+    path: 'aesthetic',
+    component: TelaAutenticadaComponent,
+    children: [
+      { path: 'lista-aluno', component: ListaAlunoComponent }
+    ]
+  },
+  // Outras rotas
 ];
-
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

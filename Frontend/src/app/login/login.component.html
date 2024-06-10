@@ -1,12 +1,10 @@
 <body>
     <div class="page">
         <form (ngSubmit)="fazerLogin()" class="formLogin">
-     <!--<form method="POST" class="formLogin">-->
             <h1 class="title">Login</h1>
             <label for="email">E-mail</label>
             <input name="email" [(ngModel)]="usuario.login" type="text" placeholder="Digite seu e-mail" autofocus="true" required/>
             <label class="lb-senha" for="password">Senha
-                <!-- <a style="text-decoration: none;" href="/">Esqueceu a senha?</a> -->
             </label>
             <input name="senha" [(ngModel)]="usuario.senha" type="password" placeholder="Digite sua senha"/>
             <button type="submit" class="btn btn-primary">Login</button>
