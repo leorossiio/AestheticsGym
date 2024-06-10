@@ -14,6 +14,7 @@ import { HomeMidComponent } from './homepage/home-mid/home-mid.component';
 import { HomePacotesComponent } from './homepage/home-pacotes/home-pacotes.component';
 import { HomeHeaderComponent } from './homepage/home-header/home-header.component';
 import { FormsModule } from '@angular/forms';
+import { TelaAutenticadaComponent } from './tela-autenticada/tela-autenticada.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { FormsModule } from '@angular/forms';
     HomeMidComponent,
     HomePacotesComponent,
     HomeHeaderComponent,
+    TelaAutenticadaComponent,
   ],
   imports: [
     BrowserModule,
