@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './footer/footer/footer.component';
+import { FooterComponent } from './homepage/footer/footer.component';
 import { MenuComponent } from './homepage/menu/menu.component';
 import { LoginComponent } from './login/login.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
@@ -14,6 +14,8 @@ import { HomePacotesComponent } from './homepage/home-pacotes/home-pacotes.compo
 import { HomeHeaderComponent } from './homepage/home-header/home-header.component';
 import { FormsModule } from '@angular/forms';
 import { TelaAutenticadaComponent } from './tela-autenticada/tela-autenticada.component';
+
+import { MenuAuthComponent } from './tela-autenticada/components/menu-auth/menu-auth.component';
 
 
 @NgModule({
@@ -29,6 +31,7 @@ import { TelaAutenticadaComponent } from './tela-autenticada/tela-autenticada.co
     HomePacotesComponent,
     HomeHeaderComponent,
     TelaAutenticadaComponent,
+    MenuAuthComponent,
   ],
   imports: [
     BrowserModule,

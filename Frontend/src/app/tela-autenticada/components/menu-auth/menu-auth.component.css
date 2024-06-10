@@ -1,0 +1,48 @@
+.navbar{
+    background-color: black;
+    padding: 10px 30px 10px 30px;
+    min-height: 100px;
+    height: auto;
+}
+
+ul{
+    color: white;
+    display: flex;
+    list-style-type: none;
+    margin: 10px;
+    gap: 20px;
+}
+
+.lista a {
+    text-decoration: none; 
+    color: inherit; 
+    cursor: pointer;
+  }
+
+
+.logo{
+    height: 80px;
+    width: 80px;
+    cursor: pointer;
+}  
+
+
+.btn{
+    width: 90px;
+}
+
+.btn-outline-dark {
+border: 1.5px solid white; /* Define a largura, o estilo e a cor da borda do botão */
+color: white;
+}
+.btn-primary{
+    margin-left: 8px;
+}
+
+@media (max-width: 800px) {
+    .navbar{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
