@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListaClienteComponent } from './lista-cliente/lista-cliente/lista-cliente.component';
 import { FooterComponent } from './footer/footer/footer.component';
 import { MenuComponent } from './homepage/menu/menu.component';
 import { LoginComponent } from './login/login.component';
@@ -20,7 +19,6 @@ import { TelaAutenticadaComponent } from './tela-autenticada/tela-autenticada.co
 @NgModule({
   declarations: [
     AppComponent,
-    ListaClienteComponent,
     FooterComponent,
     MenuComponent,
     LoginComponent,
