@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class MenuComponent {
 
+  scrollTo(section: string) {
+    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

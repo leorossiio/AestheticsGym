@@ -1,26 +1,18 @@
 <nav class="navbar">
   <div>
-    <img
-      class="logo"
-      src="./assets/imgs/logotipo.png"
-      alt="logotipo"
-      routerLink="/login"
-    />
+    <img class="logo" src="./assets/imgs/logotipo.png" alt="logotipo" routerLink="/home" />
   </div>
 
   <div class="lista">
-    <ul>
+    <ul class="nav-lista-home">
       <li>
-        <a routerLink="/home">Home</a>
+        <a (click)="scrollTo('header')">Home</a>
       </li>
       <li>
-        <a href="">Funcionalidades</a>
+        <a (click)="scrollTo('programas')">Funcionalidades</a>
       </li>
       <li>
-        <a href="">Planos</a>
-      </li>
-      <li>
-        <a href="">Sobre</a>
+        <a (click)="scrollTo('pacotes')">Pacotes</a>
       </li>
     </ul>
   </div>

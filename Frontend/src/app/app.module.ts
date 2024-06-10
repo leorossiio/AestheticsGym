@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListaClienteComponent } from './lista-cliente/lista-cliente/lista-cliente.component';
 import { FooterComponent } from './footer/footer/footer.component';
-import { MenuComponent } from './menu/menu/menu.component';
+import { MenuComponent } from './homepage/menu/menu.component';
 import { LoginComponent } from './login/login.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { HomepageComponent } from './homepage/homepage.component';
