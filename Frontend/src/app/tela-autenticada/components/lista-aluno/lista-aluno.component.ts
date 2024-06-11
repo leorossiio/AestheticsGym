@@ -10,11 +10,11 @@ export class ListaAlunoComponent {
 
   constructor(private router: Router) { }
   user = [
-    { nome: 'Ana', email: 'ana@example.com', funcao: 'Engenheiro de FE' },
-    { nome: 'Carlos', email: 'carlos@example.com', funcao: 'Engenheiro de BE' },
-    { nome: 'Diego', email: 'carlos@example.com', funcao: 'Analista de dados' },
-    { nome: 'Leonardo', email: 'carlos@example.com', funcao: 'Líder Técnico' },
-    { nome: 'Maria', email: 'carlos@example.com', funcao: 'Engenheiro de BE' }
+    { nome: 'Ana', email: 'ana@example.com', funcao: 'Professor' },
+    { nome: 'Carlos', email: 'carlos@example.com', funcao: 'Professor' },
+    { nome: 'Diego', email: 'carlos@example.com', funcao: 'Aluno' },
+    { nome: 'Leonardo', email: 'carlos@example.com', funcao: 'Aluno' },
+    { nome: 'Maria', email: 'carlos@example.com', funcao: 'Aluno' }
   ];
 
   usuarioSelecionado: any;
