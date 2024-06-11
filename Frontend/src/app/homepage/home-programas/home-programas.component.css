@@ -66,6 +66,7 @@ planos {
 
 .card-group {
     justify-content: center;
+    gap:3rem;
 }
 
 @media(max-width: 768px) {
