@@ -1,0 +1,64 @@
+.modal-content {
+    background-color: rgba(19, 19, 22);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    color: white;
+  }
+  
+  .modal-title {
+    text-align: center;
+    color: white;
+  }
+  
+  .modal-body input,
+  .modal-body select {
+    padding: 15px;
+    font-size: 14px;
+    border: 1px solid #70707B;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    transition: all linear 160ms;
+    outline: none;
+    height: 48px;
+    border-radius: 8px;
+    background-color: #090707!important;
+    color: white;
+  }
+  
+  .modal-body input:focus,
+  .modal-body select:focus {
+    border: 1px solid #0d6efd;
+  }
+  
+  .modal-body label {
+    font-size: 14px;
+  }
+  
+  .btn-primary {
+    background-color: #0d6efd;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0b5ed7;
+  }
+
+  .col-formlogin{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .botao-cadastro{
+    width: 100%;
+    text-align: center;
+  }
+
+  .modal-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  
+  
