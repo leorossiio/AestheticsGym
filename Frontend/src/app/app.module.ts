@@ -21,6 +21,7 @@ import { ListaAlunoComponent } from './tela-autenticada/components/lista-aluno/l
 import { AddUserModalComponent } from './tela-autenticada/components/lista-aluno/component/add-user-modal/add-user-modal.component';
 import { TreinoComponent } from './tela-autenticada/components/treino/treino.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SobreComponent } from './tela-autenticada/components/menu-auth/components/sobre/sobre.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
     ListaAlunoComponent,
     AddUserModalComponent,
     TreinoComponent,
+    SobreComponent,
   ],
   imports: [
     BrowserModule,

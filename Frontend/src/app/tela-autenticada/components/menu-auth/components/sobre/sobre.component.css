@@ -1,0 +1,41 @@
+.modal-body input,
+.modal-body select {
+  padding: 15px;
+  font-size: 14px;
+  border: 1px solid #70707B;
+  margin-bottom: 20px;
+  margin-top: 5px;
+  transition: all linear 160ms;
+  outline: none;
+  height: 48px;
+  border-radius: 8px;
+  background-color: #090707!important;
+  color: white;
+}
+
+.modal-header{
+    flex-direction: column;
+}
+
+#fechar-modal{
+    text-align: end;
+    width: 100%;
+}
+
+.modal-content {
+    background-color: rgba(19, 19, 22);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    color: white;
+  }
+  
+  .modal-title {
+    text-align: center;
+    color: white;
+  }
+  
+
+  #title{
+    margin-top: -46px;
+  }

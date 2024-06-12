@@ -71,7 +71,7 @@ userController.post("/cadastroUsuarioNaoAutenticada", async (req, res) => {
 // Rotas autenticadas:
 
 // Rota para obter todos os usuario
-userController.get("/listarUsuarios", async (req, res) => {
+userController.get("/listarUsuarios", auth,async (req, res) => {
   try {
     let usuarios = await UserModel.find();
     return res.status(200).json(usuarios);
