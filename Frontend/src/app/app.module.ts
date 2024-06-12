@@ -19,6 +19,7 @@ import { MenuAuthComponent } from './tela-autenticada/components/menu-auth/menu-
 import { ListaAlunoComponent } from './tela-autenticada/components/lista-aluno/lista-aluno.component';
 import { AddUserModalComponent } from './tela-autenticada/components/lista-aluno/component/add-user-modal/add-user-modal.component';
 import { TreinoComponent } from './tela-autenticada/components/treino/treino.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { TreinoComponent } from './tela-autenticada/components/treino/treino.com
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

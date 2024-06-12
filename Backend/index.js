@@ -1,20 +1,27 @@
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const loginController = require("./Controllers/loginController");
-const userController = require("./Controllers/autenticacao/userController");
-const todoListController = require("./Controllers/autenticacao/todoListController"); 
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+
 // Carrega as variáveis de ambiente do arquivo .env
 dotenv.config();
+
+import loginController from "./controllers/loginController";
+import userController from "./controllers/autenticacao/userController";
+import todoListController from "./controllers/autenticacao/todoListController";
 
 const servidor = express();
 
 // Middleware para processar o corpo das solicitações como JSON
 servidor.use(express.json());
 
-// Middleware para permitir solicitações de outros domínios (CORS)
-servidor.use(cors());
+// Configurações do CORS
+const corsOptions = {
+  origin: "http://localhost:4200",  // URL do frontend durante o desenvolvimento
+  optionsSuccessStatus: 200
+};
+
+servidor.use(cors(corsOptions));
 
 // Define as rotas para os controladores de login, usuário e tarefas
 servidor.use("/login", loginController);
@@ -22,14 +29,14 @@ servidor.use("/users", userController);
 servidor.use("/todoList", todoListController); // Rota para as tarefas
 
 // Conexão com o banco de dados MongoDB
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;  // Porta padrão caso não esteja definida no .env
 const DB_NAME = process.env.DB_NAME;
 const DB_USER = process.env.DB_USER;
 const DB_PASS = process.env.DB_PASS;
 const DB_URL = `mongodb+srv://${DB_USER}:${DB_PASS}@crud-app.yso2wfp.mongodb.net/${DB_NAME}`;
 
 mongoose
-  .connect(DB_URL)
+  .connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Banco de dados conectado com sucesso");
     servidor.listen(PORT, () => {
