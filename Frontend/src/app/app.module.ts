@@ -18,6 +18,7 @@ import { TelaAutenticadaComponent } from './tela-autenticada/tela-autenticada.co
 import { MenuAuthComponent } from './tela-autenticada/components/menu-auth/menu-auth.component';
 import { ListaAlunoComponent } from './tela-autenticada/components/lista-aluno/lista-aluno.component';
 import { AddUserModalComponent } from './tela-autenticada/components/lista-aluno/component/add-user-modal/add-user-modal.component';
+import { TreinoComponent } from './tela-autenticada/components/treino/treino.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { AddUserModalComponent } from './tela-autenticada/components/lista-aluno
     MenuAuthComponent,
     ListaAlunoComponent,
     AddUserModalComponent,
+    TreinoComponent,
   ],
   imports: [
     BrowserModule,
