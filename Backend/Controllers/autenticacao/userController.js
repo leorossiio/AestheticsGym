@@ -16,10 +16,8 @@ function generateId() {
 
 // Conversor
 const funcoes = {
-  1: "Engenheiro de FE",
-  2: "Engenheiro de BE",
-  3: "Analista de dados",
-  4: "Líder Técnico",
+  1: "Aluno",
+  2: "Professor"
 };
 
 // Rotas não autenticadas:

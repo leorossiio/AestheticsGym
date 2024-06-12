@@ -1,42 +1,62 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-lista-aluno',
   templateUrl: './lista-aluno.component.html',
   styleUrls: ['./lista-aluno.component.css']
 })
-export class ListaAlunoComponent {
-
-  constructor(private router: Router) { }
-
-  users = [
-    { nome: 'Ana', email: 'ana@example.com', funcao: 'Professor', isEditing: false },
-    { nome: 'Carlos', email: 'carlos@example.com', funcao: 'Professor', isEditing: false },
-    { nome: 'Diego', email: 'diego@example.com', funcao: 'Aluno', isEditing: false },
-    { nome: 'Leonardo', email: 'leonardo@example.com', funcao: 'Aluno', isEditing: false },
-    { nome: 'Maria', email: 'maria@example.com', funcao: 'Aluno', isEditing: false }
-  ];
-
-  usuarioSelecionado: any;
-
-  toggleEdit(user: any): void {
-    if (user.isEditing) {
-      // Save changes
-      this.salvarEdicao(user);
+  
+export class ListaAlunoComponent implements OnInit {
+    users: any[] = []; // Inicializando como um array vazio
+  
+    constructor(private userService: UserService) {}
+  
+    ngOnInit(): void {
+      this.carregarUsuarios();
     }
-    user.isEditing = !user.isEditing;
-  }
-
-  salvarEdicao(user: any) {
-    // Here you can call a service to save the changes to the backend
-    console.log('User saved:', user);
-  }
-
-  deletarUsuario(user: any) {
-    const index = this.users.indexOf(user);
-    if (index !== -1) {
-      this.users.splice(index, 1);
+  
+    carregarUsuarios(): void {
+      this.userService.listarUsuarios().subscribe(
+        (data) => {
+          this.users = data;
+        },
+        (error) => {
+          console.error('Erro ao carregar usuários:', error);
+        }
+      );
+    }
+  
+    toggleEdit(user: any): void {
+      if (user.isEditing) {
+        this.salvarEdicao(user);
+      }
+      user.isEditing = !user.isEditing;
+    }
+  
+    salvarEdicao(user: any): void {
+      this.userService.editarUsuario(user).subscribe(
+        (data) => {
+          console.log('Usuário editado com sucesso:', data);
+        },
+        (error) => {
+          console.error('Erro ao editar usuário:', error);
+        }
+      );
+    }
+  
+    deletarUsuario(user: any): void {
+      this.userService.deletarUsuario(user.idUser).subscribe(
+        () => {
+          const index = this.users.indexOf(user);
+          if (index !== -1) {
+            this.users.splice(index, 1);
+          }
+          console.log('Usuário deletado com sucesso');
+        },
+        (error) => {
+          console.error('Erro ao deletar usuário:', error);
+        }
+      );
     }
   }
-}
