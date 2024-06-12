@@ -62,3 +62,11 @@
 
   
   
+
+.close{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    margin-top: -5px;
+}

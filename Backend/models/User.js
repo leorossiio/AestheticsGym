@@ -5,7 +5,8 @@ const UserModel = mongoose.model("users", {
   nome: String, //UserName (unico)
   email: String, //Email (unico)
   senha: String, //Email (Podem existir senhas iguais)
-  funcao: String //Funcao
+  funcao: String, //Funcao
+  dataCriacao: Date
 });
 
 module.exports = UserModel;

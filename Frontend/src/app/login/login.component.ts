@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,25 +8,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  usuario = {
-    login: '',
-    senha: ''
+
+  loginForm: FormGroup;
+  invalidUser: boolean = false;
+
+  constructor(private router: Router) {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+    })
   }
 
-  loginAuth: string = "admin";
-  senhaAuth: string = "admin";
-  constructor(
-    private router : Router
-    )
-    {}
-  fazerLogin() {
-    if (this.usuario.login === this.loginAuth && this.usuario.senha === this.senhaAuth) {
-      this.router.navigate(['/aesthetic']);
-      alert("Login feito");
-    }
-    else{
-      alert("Acesso recusado");
-    }
+  showPassword: boolean = false;
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
+  login() {
+
+    if(this.loginForm.value['email'] == "admin@gmail.com" && this.loginForm.value['password'] == "admin") {
+      this.router.navigate(["/app"])
+    } else {
+      this.invalidUser = true;
+    }
+
+  }
 }
+
+// Usuario para testes:
+// admin@gmail.com
+// admin

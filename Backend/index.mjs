@@ -36,7 +36,7 @@ const DB_PASS = process.env.DB_PASS;
 const DB_URL = `mongodb+srv://${DB_USER}:${DB_PASS}@crud-app.yso2wfp.mongodb.net/${DB_NAME}`;
 
 mongoose
-  .connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(DB_URL)
   .then(() => {
     console.log("Banco de dados conectado com sucesso");
     servidor.listen(PORT, () => {

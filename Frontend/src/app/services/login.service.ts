@@ -7,7 +7,7 @@ import { environment } from 'src/environment/environment';
   providedIn: 'root'
 })
 export class LoginService {
-  private baseUrl = environment.apiUrl + '/login'; // Atualize com o endereço do seu servidor backend
+  private baseUrl = environment.apiUrl + '/login';
 
   constructor(private http: HttpClient) {}
 

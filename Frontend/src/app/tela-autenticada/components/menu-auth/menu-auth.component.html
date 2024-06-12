@@ -1,28 +1,31 @@
 <nav class="navbar">
+  <div>
+    <img class="logo" src="./assets/imgs/logotipo.png" alt="logotipo" routerLink="/home" />
+  </div>
+
+  <div class="lista-menu">
+    <ul class="nav-lista-auth">
+      <li>
+        <a routerLink="/aesthetic/lista-aluno">Usuários</a> <!--Caso: professor-->
+      </li>
+      <li>
+        <a>Meu treino</a> <!--Caso: aluno-->
+      </li>
+      <li>
+        <a>Avaliaçao física</a> <!--Histórico de avaliação fisica do aluno-->
+      </li>
+
+      <li>
+        <a>Sobre</a> <!--Histórico de avaliação fisica do aluno-->
+      </li>
+    </ul>
+  </div>
+
+  <div class="botoes">
     <div>
-      <img class="logo" src="./assets/imgs/logotipo.png" alt="logotipo" routerLink="/home" />
+      <button type="button" class="btn btn-outline-danger" routerLink="/home">
+        Logout
+      </button>
     </div>
-  
-    <div class="lista-menu">
-      <ul class="nav-lista-auth">
-        <li>
-          <a routerLink="/aesthetic/lista-aluno">Alunos</a> <!--Caso: professor-->
-        </li>
-        <li>
-          <a>Meu treino</a> <!--Caso: aluno-->
-        </li>
-        <li>
-          <a>Avaliaçao física</a> <!--Histórico de avaliação fisica do aluno-->
-        </li>
-      </ul>
-    </div>
-  
-    <div class="botoes">
-      <div>
-        <button type="button" class="btn btn-outline-danger" routerLink="/home">
-          Logout
-        </button>
-      </div>
-    </div>
-  </nav>
-  
+  </div>
+</nav>

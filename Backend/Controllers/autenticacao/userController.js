@@ -4,7 +4,6 @@ const UserModel = require("../../models/User");
 const express = require("express");
 const userController = express.Router();
 
-
 function generateId() {
   const characters = '0123456789';
   let result = '';
@@ -46,13 +45,15 @@ userController.post("/cadastroUsuarioNaoAutenticada", async (req, res) => {
     }
 
     const senhaEncrypt = await bcryptjs.hash(senha, 10);
+    const funcaoNome = "Aluno"; // Fixo como "Aluno" para cadastro não autenticado
 
     const user = {
       idUser: idUser,
       nome: nome,
       email: email,
       senha: senhaEncrypt,
-      funcao: null,
+      funcao: funcaoNome,
+      dataCriacao: Date.now() // Adicionando a data de criação
     };
 
     await UserModel.create(user);
@@ -70,7 +71,7 @@ userController.post("/cadastroUsuarioNaoAutenticada", async (req, res) => {
 // Rotas autenticadas:
 
 // Rota para obter todos os usuario
-userController.get("/listarUsuarios", auth, async (req, res) => {
+userController.get("/listarUsuarios", async (req, res) => {
   try {
     let usuarios = await UserModel.find();
     return res.status(200).json(usuarios);
@@ -179,6 +180,7 @@ userController.post("/cadastroUsuarioAutenticada", auth, async (req, res) => {
       email: email,
       senha: senhaEncrypt,
       funcao: funcaoNome,
+      dataCriacao: Date.now() // Adicionando a data de criação
     };
 
     await UserModel.create(user);
