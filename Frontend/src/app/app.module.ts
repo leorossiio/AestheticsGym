@@ -22,6 +22,7 @@ import { AddUserModalComponent } from './tela-autenticada/components/lista-aluno
 import { TreinoComponent } from './tela-autenticada/components/treino/treino.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SobreComponent } from './tela-autenticada/components/menu-auth/components/sobre/sobre.component';
+import { CadastroTreinoComponent } from './tela-autenticada/components/cadastro-treino/cadastro-treino.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { SobreComponent } from './tela-autenticada/components/menu-auth/componen
     AddUserModalComponent,
     TreinoComponent,
     SobreComponent,
+    CadastroTreinoComponent,
   ],
   imports: [
     BrowserModule,
