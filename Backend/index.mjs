@@ -6,9 +6,9 @@ import dotenv from "dotenv";
 // Carrega as variáveis de ambiente do arquivo .env
 dotenv.config();
 
-import loginController from "./controllers/loginController";
-import userController from "./controllers/autenticacao/userController";
-import todoListController from "./controllers/autenticacao/todoListController";
+import loginController from "./Controllers/loginController.js";
+import userController from "./Controllers/autenticacao/userController.js";
+import todoListController from "./controllers/autenticacao/todoListController.js";
 
 const servidor = express();
 
