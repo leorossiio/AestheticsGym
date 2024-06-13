@@ -8,25 +8,25 @@ dotenv.config();
 
 import loginController from "./Controllers/loginController.js";
 import userController from "./Controllers/autenticacao/userController.js";
-import todoListController from "./controllers/autenticacao/todoListController.js";
+// import todoListController from "./controllers/autenticacao/todoListController.js";
 
 const servidor = express();
 
-// Middleware para processar o corpo das solicitações como JSON
+
 servidor.use(express.json());
 
 // Configurações do CORS
 const corsOptions = {
-  origin: "http://localhost:4200",  // URL do frontend durante o desenvolvimento
+  origin: "http://localhost:4200", 
   optionsSuccessStatus: 200
 };
 
 servidor.use(cors(corsOptions));
 
-// Define as rotas para os controladores de login, usuário e tarefas
+
 servidor.use("/login", loginController);
 servidor.use("/users", userController);
-servidor.use("/todoList", todoListController); // Rota para as tarefas
+// servidor.use("/todoList", todoListController);
 
 // Conexão com o banco de dados MongoDB
 const PORT = process.env.PORT || 3000;  // Porta padrão caso não esteja definida no .env

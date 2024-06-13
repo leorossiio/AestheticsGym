@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
 
@@ -11,8 +11,14 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  }
+
   listarUsuarios(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/users/listarUsuarios`);
+    const headers = this.getAuthHeaders();
+    return this.http.get<any[]>(`${this.baseUrl}/users/listarUsuarios`, { headers });
   }
 
   adicionarUsuario(user: any): Observable<any> {
@@ -20,10 +26,12 @@ export class UserService {
   }
 
   editarUsuario(user: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/users/editarUsuario/${user.email}`, user);
+    const headers = this.getAuthHeaders();
+    return this.http.put<any>(`${this.baseUrl}/users/editarUsuario/${user.email}`, user, { headers });
   }
 
   deletarUsuario(idUser: number): Observable<any> {
-    return this.http.delete<any>(`${this.baseUrl}/users/${idUser}`);
+    const headers = this.getAuthHeaders();
+    return this.http.delete<any>(`${this.baseUrl}/users/${idUser}`, { headers });
   }
 }

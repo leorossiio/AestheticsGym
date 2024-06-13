@@ -6,6 +6,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { TelaAutenticadaComponent } from './tela-autenticada/tela-autenticada.component';
 import { ListaAlunoComponent } from './tela-autenticada/components/lista-aluno/lista-aluno.component';
 import { TreinoComponent } from './tela-autenticada/components/treino/treino.component';
+import { CadastroTreinoComponent } from './tela-autenticada/components/cadastro-treino/cadastro-treino.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redireciona para /home por padrão
@@ -17,7 +18,8 @@ const routes: Routes = [
     component: TelaAutenticadaComponent,
     children: [
       { path: 'lista-aluno', component: ListaAlunoComponent },
-      { path: 'treino', component: TreinoComponent }
+      { path: 'meu-treino', component: TreinoComponent },
+      { path: 'cadastro-treino', component: CadastroTreinoComponent }
     ]
   },
   // Outras rotas

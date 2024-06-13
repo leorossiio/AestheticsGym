@@ -1,20 +1,21 @@
-const jwt = require('jsonwebtoken')
-const auth = async (request, response, next) => {
-    const authHeader = request.headers.authorization
-    if(!authHeader) {
-        return response.status(401).json({message: "Token é obrigatório!"})
+const jwt = require('jsonwebtoken');
+
+const auth = async (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+        return res.status(401).json({ message: "Token é obrigatório!" });
     }
 
-    const [,token] = authHeader.split(' ')
+    const [, token] = authHeader.split(' ');
 
     try {
-        const senha = process.env.JWT_SECRET
-        await jwt.verify(token, senha)
-
-        next()
+        const senha = process.env.JWT_SECRET;
+        const decoded = jwt.verify(token, senha);
+        req.user = decoded; // Adiciona as informações do usuário ao objeto de solicitação
+        next();
     } catch (error) {
-        return response.status(401).json({message: "Token inválido!"})
+        return res.status(401).json({ message: "Token inválido!" });
     }
-}
+};
 
-module.exports = auth
+module.exports = auth;

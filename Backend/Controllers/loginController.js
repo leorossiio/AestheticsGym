@@ -5,25 +5,31 @@ const jwt = require("jsonwebtoken");
 const loginController = async (req, res) => {
   const { email, senha } = req.body;
 
-  var user = await UserModel.findOne({ email: email });
-  if (!user) {
-    return res.status(400).json({ mensagem: "Usuário não encontrado" });
-  }
+  try {
+    const user = await UserModel.findOne({ email: email });
+    if (!user) {
+      return res.status(400).json({ mensagem: "Usuário não encontrado" });
+    }
 
-  //Processo responsavel por gerar o token e permitir a entrada em uma rota autenticada.
-  if (await bcryptjs.compare(senha, user.senha)) {
+    const senhaValida = await bcryptjs.compare(senha, user.senha);
+    if (!senhaValida) {
+      return res.status(401).json({ mensagem: "Email ou senha inválidos" });
+    }
+
     const token = jwt.sign(
-      { nome: user.nome, email: user.email },
+      { nome: user.nome, email: user.email, funcao: user.funcao },
       process.env.JWT_SECRET,
       { expiresIn: "2d" }
     );
 
     return res.status(200).json({
-      mensagem: "Usuario logado com sucesso!",
+      mensagem: "Usuário logado com sucesso!",
       token: token,
+      funcao: user.funcao // Retornando a função do usuário
     });
-  } else {
-    return res.status(401).json({ mensagem: "Email ou senha inválidos" });
+  } catch (error) {
+    console.error("Erro ao processar login:", error);
+    return res.status(500).json({ mensagem: "Erro interno do servidor" });
   }
 };
 

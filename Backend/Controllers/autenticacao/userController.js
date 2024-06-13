@@ -15,8 +15,8 @@ function generateId() {
 
 // Conversor
 const funcoes = {
-  1: "Aluno",
-  2: "Professor"
+  1: "ALUNO",
+  2: "PROFESSOR"
 };
 
 // Rotas não autenticadas:
@@ -45,7 +45,7 @@ userController.post("/cadastroUsuarioNaoAutenticada", async (req, res) => {
     }
 
     const senhaEncrypt = await bcryptjs.hash(senha, 10);
-    const funcaoNome = "Aluno"; // Fixo como "Aluno" para cadastro não autenticado
+    const funcaoNome = "ALUNO"; // Fixo como "Aluno" para cadastro não autenticado
 
     const user = {
       idUser: idUser,
@@ -71,13 +71,13 @@ userController.post("/cadastroUsuarioNaoAutenticada", async (req, res) => {
 // Rotas autenticadas:
 
 // Rota para obter todos os usuario
-userController.get("/listarUsuarios", auth,async (req, res) => {
+userController.get("/listarUsuarios", auth, async (req, res) => {
   try {
-    let usuarios = await UserModel.find();
-    return res.status(200).json(usuarios);
+      let usuarios = await UserModel.find();
+      return res.status(200).json(usuarios);
   } catch (err) {
-    console.log(`Erro ao buscar usuários. ${err}`);
-    return res.status(500).json({ error: err });
+      console.log(`Erro ao buscar usuários. ${err}`);
+      return res.status(500).json({ error: err });
   }
 });
 
