@@ -7,6 +7,10 @@ import { TelaAutenticadaComponent } from './tela-autenticada/tela-autenticada.co
 import { ListaAlunoComponent } from './tela-autenticada/components/lista-aluno/lista-aluno.component';
 import { TreinoComponent } from './tela-autenticada/components/treino/treino.component';
 import { CadastroTreinoComponent } from './tela-autenticada/components/cadastro-treino/cadastro-treino.component';
+import { AcessoNegadoComponent } from './shared/acesso-negado/acesso-negado.component';
+import { PaginaNaoEncontradaComponent } from './shared/pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { IsAuthorizationGuardProfessor } from './guard/authorization.guard';
+// import { IsAuthGuard } from './guard/auth.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redireciona para /home por padrão
@@ -17,12 +21,16 @@ const routes: Routes = [
     path: 'aesthetic',
     component: TelaAutenticadaComponent,
     children: [
-      { path: 'lista-aluno', component: ListaAlunoComponent },
+      { path: 'lista-aluno', component: ListaAlunoComponent, canActivate: [IsAuthorizationGuardProfessor]},
       { path: 'meu-treino', component: TreinoComponent },
       { path: 'cadastro-treino', component: CadastroTreinoComponent }
     ]
   },
-  // Outras rotas
+  
+  
+  { path: 'not-found', component: PaginaNaoEncontradaComponent },
+  { path: 'forbidden', component: AcessoNegadoComponent },
+  { path: '**', redirectTo: 'not-found' }
 ];
 
 @NgModule({

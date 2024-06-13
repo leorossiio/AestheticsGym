@@ -23,6 +23,8 @@ import { TreinoComponent } from './tela-autenticada/components/treino/treino.com
 import { HttpClientModule } from '@angular/common/http';
 import { SobreComponent } from './tela-autenticada/components/menu-auth/components/sobre/sobre.component';
 import { CadastroTreinoComponent } from './tela-autenticada/components/cadastro-treino/cadastro-treino.component';
+import { AcessoNegadoComponent } from './shared/acesso-negado/acesso-negado.component';
+import { PaginaNaoEncontradaComponent } from './shared/pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 
 @NgModule({
@@ -44,6 +46,8 @@ import { CadastroTreinoComponent } from './tela-autenticada/components/cadastro-
     TreinoComponent,
     SobreComponent,
     CadastroTreinoComponent,
+    AcessoNegadoComponent,
+    PaginaNaoEncontradaComponent,
   ],
   imports: [
     BrowserModule,
