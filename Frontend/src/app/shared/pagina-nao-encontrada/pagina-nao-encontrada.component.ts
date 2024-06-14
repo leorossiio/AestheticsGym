@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pagina-nao-encontrada',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class PaginaNaoEncontradaComponent {
 
-}
+    constructor(
+  
+      private router: Router
+    ) { }
+  
+    redirectToUserRole(): void {
+      this.router.navigate(['/home']);
+    }
+  
+  }
+

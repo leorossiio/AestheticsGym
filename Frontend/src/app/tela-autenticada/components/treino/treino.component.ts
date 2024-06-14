@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/guard/auth.service';
 
 @Component({
   selector: 'app-treino',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./treino.component.css']
 })
 export class TreinoComponent implements OnInit {
+  userRole: string | null = null;
+
+  constructor(private authService: AuthService) { }
+
+
   aluno = {
-    nome: 'João Silva',
+    nome: this.authService.getUserName(),
     idade: 25,
     nivel: 'Intermediário'
   };
@@ -81,9 +87,8 @@ export class TreinoComponent implements OnInit {
     }
   ];
 
-  constructor() { }
-
   ngOnInit(): void {
+    this.userRole = this.authService.getUserRole();
   }
 
 

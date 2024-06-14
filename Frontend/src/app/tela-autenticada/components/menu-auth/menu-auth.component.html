@@ -5,13 +5,13 @@
 
   <div class="lista-menu">
     <ul class="nav-lista-auth">
-      <li>
+      <li *ngIf="userRole != 'ALUNO'">
         <a routerLink="/aesthetic/lista-aluno">Usuários</a> <!--Caso: professor-->
       </li>
       <li>
         <a routerLink="/aesthetic/meu-treino">Meu treino</a> <!--Caso: aluno-->
       </li>
-      <li>
+      <li *ngIf="userRole != 'ALUNO'">
         <a routerLink="/aesthetic/cadastro-treino">Cadastrar treino</a>
       </li>
       <li>
@@ -27,7 +27,7 @@
 
   <div class="botoes">
     <div>
-      <button type="button" class="btn btn-outline-danger" routerLink="/home">
+      <button type="button" class="btn btn-outline-danger" (click)="logout()">
         Logout
       </button>
     </div>
