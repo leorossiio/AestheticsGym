@@ -30,8 +30,9 @@ export class UserService {
     return this.http.put<any>(`${this.baseUrl}/users/editarUsuario/${user.email}`, user, { headers });
   }
 
-  deletarUsuario(idUser: number): Observable<any> {
+  deletarUsuario(idUser: string): Observable<any> {
     const headers = this.getAuthHeaders();
     return this.http.delete<any>(`${this.baseUrl}/users/${idUser}`, { headers });
-  }
+}
+
 }

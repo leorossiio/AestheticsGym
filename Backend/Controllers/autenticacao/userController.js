@@ -4,6 +4,12 @@ const UserModel = require("../../models/User");
 const express = require("express");
 const userController = express.Router();
 
+const dataAtual = new Date();
+
+
+const offsetBrasil = -3; 
+const dataAtualBrasil = new Date(dataAtual.getTime() - offsetBrasil * 60 * 60 * 1000);
+
 function generateId() {
   const characters = '0123456789';
   let result = '';
@@ -53,7 +59,7 @@ userController.post("/cadastroUsuarioNaoAutenticada", async (req, res) => {
       email: email,
       senha: senhaEncrypt,
       funcao: funcaoNome,
-      dataCriacao: Date.now() // Adicionando a data de criação
+      dataCriacao: dataAtualBrasil // Adicionando a data de criação
     };
 
     await UserModel.create(user);
@@ -180,7 +186,7 @@ userController.post("/cadastroUsuarioAutenticada", auth, async (req, res) => {
       email: email,
       senha: senhaEncrypt,
       funcao: funcaoNome,
-      dataCriacao: Date.now() // Adicionando a data de criação
+      dataCriacao: dataAtualBrasil // Adicionando a data de criação
     };
 
     await UserModel.create(user);
@@ -196,13 +202,13 @@ userController.post("/cadastroUsuarioAutenticada", auth, async (req, res) => {
 
 
 // Rota para editar usuario:
-userController.put("/editarUsuario/:email", auth, async (req, res) => {
-  const userEmail = req.params.email;
-  const { nome, email, senha, funcao } = req.body;
+userController.put("/editarUsuario/:idUser", auth, async (req, res) => {
+  const idUser = req.params.idUser; // Captura o ID do usuário
+  const { nome, email, funcao } = req.body;
 
   try {
-    // Verifica se o usuário existe através do email
-    const user = await UserModel.findOne({ email: userEmail });
+    // Verifica se o usuário existe com base no ID
+    const user = await UserModel.findOne({ idUser: idUser });
     if (!user) {
       return res.status(404).json({ mensagem: "Usuário não encontrado" });
     }
@@ -210,10 +216,6 @@ userController.put("/editarUsuario/:email", auth, async (req, res) => {
     // Atualiza os campos do usuário
     if (nome) user.nome = nome;
     if (email) user.email = email;
-    if (senha) {
-      const senhaEncrypt = await bcryptjs.hash(senha, 10);
-      user.senha = senhaEncrypt;
-    }
     if (funcao) {
       const funcaoNome = funcoes[funcao];
       if (!funcaoNome) {
@@ -231,5 +233,6 @@ userController.put("/editarUsuario/:email", auth, async (req, res) => {
     return res.status(500).json({ error: error });
   }
 });
+
 
 module.exports = userController;

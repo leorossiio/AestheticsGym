@@ -6,16 +6,15 @@ import { UserService } from '../../../services/usuario.service';
   templateUrl: './lista-aluno.component.html',
   styleUrls: ['./lista-aluno.component.css']
 })
-  
 export class ListaAlunoComponent implements OnInit {
-  users: any[] = []; 
-  
-  constructor(private userService: UserService) {}
-  
+  users: any[] = [];
+
+  constructor(private userService: UserService) { }
+
   ngOnInit(): void {
     this.carregarUsuarios();
   }
-  
+
   carregarUsuarios(): void {
     this.userService.listarUsuarios().subscribe(
       (data) => {
@@ -26,7 +25,7 @@ export class ListaAlunoComponent implements OnInit {
       }
     );
   }
-  
+
   toggleEdit(user: any): void {
     if (user.isEditing) {
       alert("Usuário salvo com sucesso!")
@@ -34,7 +33,7 @@ export class ListaAlunoComponent implements OnInit {
     }
     user.isEditing = !user.isEditing;
   }
-  
+
   salvarEdicao(user: any): void {
     this.userService.editarUsuario(user).subscribe(
       (data) => {
@@ -46,7 +45,7 @@ export class ListaAlunoComponent implements OnInit {
       }
     );
   }
-  
+
   deletarUsuario(user: any): void {
     this.userService.deletarUsuario(user.idUser).subscribe(
       () => {
@@ -60,5 +59,10 @@ export class ListaAlunoComponent implements OnInit {
         console.error('Erro ao deletar usuário:', error);
       }
     );
+  }
+
+  formatarData(data: string): string {
+    const dataCriacao = new Date(data);
+    return dataCriacao.toLocaleDateString('pt-BR');
   }
 }
