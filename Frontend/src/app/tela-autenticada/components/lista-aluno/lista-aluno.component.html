@@ -38,11 +38,13 @@
                                       <span>{{ user.funcao }}</span>
                                   </div>
                                   <ng-template #editFuncao>
-                                      <select [(ngModel)]="user.funcao" class="form-control">
-                                          <option value="Aluno">Aluno</option>
-                                          <option value="Professor">Professor</option>
-                                      </select>
-                                  </ng-template>
+                                    <select [(ngModel)]="user.funcao" class="select custom-select">
+                                        <option [ngValue]="1">ALUNO</option>
+                                        <option [ngValue]="2">PROFESSOR</option>
+                                    </select>
+                                    
+                                </ng-template>
+                                
                               </td>
                               <td class="d-flex botoes-acao">
                                   <button
