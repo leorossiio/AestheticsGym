@@ -6,9 +6,6 @@ import { map, Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
 import { Router } from '@angular/router';
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +15,13 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   fazerLogin(credentials: { email: string, senha: string }): Observable<any> {
-    return this.http.post<any>(this.baseUrl, credentials);
+    return this.http.post<any>(this.baseUrl, credentials).pipe(
+      map(response => {
+        // Armazenar o token no sessionStorage
+        sessionStorage.setItem('token', response.token);
+        return response;
+      })
+    );
   }
 
   getToken(credentials: { email: string, senha: string }): Observable<string> {
@@ -27,7 +30,6 @@ export class AuthService {
     );
   }
   
-
   redirecionarUsuario(userRole: string) {
     switch (userRole.toUpperCase()) {
       case 'ALUNO':
@@ -47,27 +49,40 @@ export class AuthService {
   }
   
   getUserRole(): string {
-    let token: any = sessionStorage.getItem('token');
+    let token = this.getAuthorizationToken();
     if (!token) {
-        return 'token não encontrado';
+      return 'token não encontrado';
     }
     
     let decoded: any = jwtDecode(token);
-
     if (decoded.funcao) {
-        return decoded.funcao;
+      return decoded.funcao;
     }
     return 'função não identificada no token';
-}
+  }
 
   getExpirationToken(token: string): Date {
     let decoded: JwtPayload = jwtDecode(token);
-    let tempo: number
-    tempo = decoded.exp!;
+    let tempo: number = decoded.exp!;
     let expiracao = new Date(tempo * 1000);
-
     return expiracao;
   }
 
+  logout(): void {
+    sessionStorage.removeItem('token');
+    this.router.navigate(['/home']);
+  }
 
+  getUserName(): string {
+    let token = this.getAuthorizationToken();
+    if (!token) {
+      return 'token não encontrado';
+    }
+
+    let decoded: any = jwtDecode(token);
+    if (decoded.nome) {
+      return decoded.nome;
+    }
+    return 'nome não identificado no token';
+  }
 }
