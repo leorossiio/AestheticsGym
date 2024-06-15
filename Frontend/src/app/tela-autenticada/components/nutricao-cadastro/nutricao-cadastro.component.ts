@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/guard/auth.service';
+import { UserService } from 'src/app/services/usuario.service';
 
 interface Aluno {
   id: number;
@@ -24,6 +26,59 @@ interface PlanoNutricional {
 })
 export class NutricaoCadastroComponent implements OnInit {
   alunoSelecionado: Aluno | null = null;
+  users: any[] = [];
+  userRole: string | null = null;
+  selectedUser: any;
+usuario = {
+    nome: '',
+    email: '',
+    funcao:'',
+    dataCriacao:null
+  };
+
+  constructor(private authService: AuthService, private userService: UserService ) { }
+
+  ngOnInit(): void {
+    this.userRole = this.authService.getUserRole();
+    this.carregarUsuarios();
+  }
+
+
+  atualizarUserInformacoes(): void {
+    if (this.selectedUser) {
+      this.usuario.nome = this.selectedUser.nome;
+      this.usuario.email = this.selectedUser.email;
+      this.usuario.funcao = this.selectedUser.funcao;
+      this.usuario.dataCriacao = this.selectedUser.dataCriacao;
+    }
+  }
+
+
+  formatarData(data: string): string {
+    if (data) {
+      const dataCriacao = new Date(data);
+      return dataCriacao.toLocaleDateString('pt-BR');
+    } else {
+      return '';
+    }
+  }
+
+  carregarUsuarios(): void {
+      this.userService.listarUsuarios().subscribe({
+          next: (data) => {
+              this.users = data;
+              console.log('Usuários carregados:', this.users);
+          },
+          error: (error) => {
+              console.error('Erro ao carregar usuários:', error);
+          }
+      });
+  }
+  
+
+  
+
+
   alunos: Aluno[] = [
     { id: 1, nome: 'João', idade: 25, nivel: 'Intermediário' },
     { id: 2, nome: 'Maria', idade: 30, nivel: 'Avançado' },
@@ -31,7 +86,6 @@ export class NutricaoCadastroComponent implements OnInit {
     // Adicione mais alunos conforme necessário
   ];
 
-  userRole: string | null = null;
   diaSelecionado: string = 'Segunda-feira';
   diasSemana: string[] = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'];
 
@@ -102,13 +156,8 @@ export class NutricaoCadastroComponent implements OnInit {
     }
   };
 
-  constructor() { }
 
-  ngOnInit(): void {
-    // Simulação de função para buscar o nome do usuário logado
-    this.aluno.nome = 'João';
-    this.userRole = 'Professor';
-  }
+
 
   aluno: Aluno = {
     id: 1,

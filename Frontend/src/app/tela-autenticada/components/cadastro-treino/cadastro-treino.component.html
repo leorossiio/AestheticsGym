@@ -1,9 +1,9 @@
     <div class="container mt-5">
         <main>
         <header class="text-center mb-4">
-            <h1>Bem-vindo, {{ professor.nome }}</h1>
+            <h1>Cadastrar treino</h1>
         </header>
-        <div class="form-group ml-0 w-100 mb-5">
+        <div class="form-group ml-0 w-100 mb-4">
             <h2>Usuário:</h2>
             <ng-select id="capa-usuario" name="usuarioLista" [(ngModel)]="selectedUser" [placeholder]="selectedUser ? '' : 'Selecione o usuario:'">
                 <ng-option *ngFor="let user of users" [value]="user">

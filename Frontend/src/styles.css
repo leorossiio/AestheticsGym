@@ -70,6 +70,10 @@
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option:hover{
+    background-color: rgba(0, 123, 255, 0.25);
+}
+
 .erro {
     width: 100px;
 }

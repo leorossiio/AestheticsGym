@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { AuthService } from 'src/app/guard/auth.service';
 import { UserService } from 'src/app/services/usuario.service';
-import { Observer } from 'rxjs';
+
 @Component({
   selector: 'app-cadastro-treino',
   templateUrl: './cadastro-treino.component.html',
