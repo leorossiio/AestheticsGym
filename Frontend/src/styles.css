@@ -1,17 +1,30 @@
+:root {
+    --ag-screen-desktop: 1024px;
+}
 
 .ajuste-footer {
     height: 100px;
     background-color: #000000;
 }
 
-.lista-menu{
+.lista-menu {
     font-size: 20px;
 }
 
-.close{
+.close {
     background: none;
     border: none;
     color: white;
     font-size: 30px;
     margin-top: -5px;
+}
+
+.erro {
+    width: 100px;
+}
+
+@media screen and (min-width: 768px) { 
+    .erro {
+        width: 400px;
+    }
 }
