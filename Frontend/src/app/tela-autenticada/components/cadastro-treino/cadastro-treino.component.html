@@ -17,10 +17,10 @@
                 <p>Nome: {{ selectedUser?.nome }}</p>
                 <p>Email: {{selectedUser?.email }}</p>
                 <p>Função: {{selectedUser?.funcao }}</p>
-                <p>Data de cadastro: {{selectedUser?.dataCriacao }}</p>
+                <p>Data de cadastro: {{formatarData(selectedUser?.dataCriacao) }}</p>
             </section>
             <section class="training-plan">
-                <h2>Plano de treino</h2>
+                <h2>Plano de Treino</h2>
                 <div class="row">
                     <div class="col-md-6 mb-4" *ngFor="let treino of treinos">
                         <div class="card">

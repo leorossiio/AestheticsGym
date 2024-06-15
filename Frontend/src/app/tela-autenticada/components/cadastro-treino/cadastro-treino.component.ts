@@ -17,7 +17,7 @@ export class CadastroTreinoComponent implements OnInit {
     nome: '',
     email: '',
     funcao:'',
-    dataCriacao:''
+    dataCriacao:null
   };
 
   constructor(private authService: AuthService, private userService: UserService ) { }
@@ -110,6 +110,15 @@ export class CadastroTreinoComponent implements OnInit {
     }
   ];
 
+
+  formatarData(data: string): string {
+    if (data) {
+      const dataCriacao = new Date(data);
+      return dataCriacao.toLocaleDateString('pt-BR');
+    } else {
+      return '';
+    }
+  }
 
   carregarUsuarios(): void {
       this.userService.listarUsuarios().subscribe({
