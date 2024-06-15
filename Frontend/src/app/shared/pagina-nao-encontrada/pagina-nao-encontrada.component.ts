@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/guard/auth.service';
 
 @Component({
   selector: 'app-pagina-nao-encontrada',
@@ -8,14 +9,27 @@ import { Router } from '@angular/router';
 })
 export class PaginaNaoEncontradaComponent {
 
-    constructor(
+  constructor(private AuthService: AuthService, private router: Router) { }
+
+  ngOnInit(): void {
+    //vazio
+  }
   
-      private router: Router
-    ) { }
-  
-    redirectToUserRole(): void {
-      this.router.navigate(['/home']);
+
+  redirectToUserRole(): void {
+    const userRole = this.AuthService.getUserRole();
+
+    switch (userRole) {
+      case 'PROFESSOR':
+        this.router.navigate(['/aesthetic/lista-aluno']);
+        break;
+      case 'ALUNO':
+        this.router.navigate(['/aesthetic/meu-treino']);
+        break;
+      default:
+        this.router.navigate(['/not-found']); 
+        break;
     }
-  
+  }
   }
 

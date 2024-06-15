@@ -1,54 +1,127 @@
-.navbar{
-    background-color: black;
-    padding: 10px 30px 10px 30px;
+.navbar {
+    background-color: #000;
+    padding: 10px 30px;
     min-height: 100px;
-    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-bottom: 2px solid #fff;
 }
 
-ul{
+ul {
+    font-size: 20px;
     color: white;
     display: flex;
     list-style-type: none;
-    margin: 10px;
+    margin: 0;
+    padding: 0;
     gap: 20px;
+    justify-content: center; /* Centraliza os itens */
+    flex: 1;
+
+   
+}
+
+.nav-lista-home {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+    align-items: center;
+    justify-content: center; /* Centraliza os itens */
+}
+
+.nav-lista-home li {
+    cursor: pointer;
+}
+
+.nav-lista-home a {
+    text-decoration: none;
+    color: #ddd;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    padding-bottom: 5px;
+}
+
+.nav-lista-home a:hover {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.elemento {
+    overflow: hidden;
 }
 
 
+.logo-container {
+    flex: 1;
+}
 
+.menu-container {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
 
-.lista-menu a {
-    text-decoration: none; 
-    color: inherit; 
-  }
+.buttons-container {
+    display: flex;
+    justify-content: flex-end;
+}
 
-
-  .nav-lista-home li{
-    cursor: pointer;
-  }
-
-.logo{
+.logo {
     height: 80px;
     width: 80px;
     cursor: pointer;
-}  
+}
 
-
-.btn{
-    width: 90px;
+.btn {
+    width: 100px;
+    margin-left: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .btn-outline-dark {
-border: 1.5px solid white; /* Define a largura, o estilo e a cor da borda do botão */
-color: white;
+    border: 1.5px solid #fff;
+    color: #fff;
+    background-color: transparent;
 }
-.btn-primary{
-    margin-left: 8px;
+
+.btn-outline-dark:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+
+.btn-outline-light:hover {
+    background-color: blue;
+    color: #fff;
+}
+
+.custom-toggler {
+    color: rgba(92, 84, 84, 0.336) !important;
+    background-color: white;
 }
 
 @media (max-width: 800px) {
-    .navbar{
+    .navbar {
         display: flex;
+        align-items: center;
+    }
+
+    .nav-lista-home {
         flex-direction: column;
+        align-items: center;
+    }
+
+    .buttons-container {
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+        margin: 5px 0;
     }
 }
-

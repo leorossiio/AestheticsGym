@@ -1,10 +1,15 @@
-<nav class="navbar">
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
   <div>
     <img class="logo" src="./assets/imgs/logotipo.png" alt="logotipo" routerLink="/home" />
   </div>
-
-  <div class="lista-menu">
-    <ul class="nav-lista-home">
+  <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+  aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarScroll">
+  <div class="nav-lista-home menu-container">
+    <ul class="nav lista-home navbar-nav my-2 my-lg-0 navbar-nav-scroll">
       <li>
         <a (click)="scrollTo('header')">Home</a>
       </li>
@@ -16,16 +21,16 @@
       </li>
     </ul>
   </div>
-
-  <div class="botoes">
+  <div class="buttons-container">
     <div>
       <button type="button" class="btn btn-outline-dark" routerLink="/login">
         Login
       </button>
-
-      <button type="button" class="btn btn-primary" routerLink="/cadastro">
-        Registrar
-      </button>
-    </div>
+  <button type="button" class="btn btn-outline-primary" routerLink="/cadastro">
+    Registrar
+  </button>
+</div>
+  </div>
+</div>
   </div>
 </nav>
