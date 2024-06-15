@@ -25,10 +25,11 @@ export class UserService {
     return this.http.post<any>(`${this.baseUrl}/users/cadastroUsuarioNaoAutenticada`, user);
   }
 
-  editarUsuario(user: any): Observable<any> {
+  editarUsuario(idUser: string, userData: any): Observable<any> {
     const headers = this.getAuthHeaders();
-    return this.http.put<any>(`${this.baseUrl}/users/editarUsuario/${user.email}`, user, { headers });
+    return this.http.put<any>(`${this.baseUrl}/users/editarUsuario/${idUser}`, userData, { headers });
   }
+  
 
   deletarUsuario(idUser: string): Observable<any> {
     const headers = this.getAuthHeaders();
