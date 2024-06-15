@@ -1,39 +1,44 @@
-<div class="container mt-5">
-    <header class="text-center mb-4">
-        <h1>Bem-vindo, {{ professor.nome }}</h1>
-    </header>
-    <label>Selecione um usuário:</label>
-    <select class="form-control mb-5" [(ngModel)]="selectedUser">
-        <option *ngFor="let user of users" [ngValue]="user">{{ user.nome }}</option>
-    </select>
-    <main>
-        <section class="user-info mb-4">
-            <h2>Informações do Aluno</h2>
-            <p>Nome: {{ selectedUser?.nome }}</p>
-            <p>Email: {{selectedUser?.email }}</p>
-            <p>Função: {{selectedUser?.funcao }}</p>
-            <p>Data de cadastro: {{selectedUser?.dataCriacao }}</p>
-        </section>
-        <section class="training-plan">
-            <h2>Plano de Treino</h2>
-            <div class="row">
-                <div class="col-md-6 mb-4" *ngFor="let treino of treinos">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>{{ treino.nome }}</h3>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-unstyled">
-                                <li *ngFor="let exercicio of treino.exercicios">
-                                    <h4>{{ exercicio.nome }}</h4>
-                                    <p>Séries: {{ exercicio.series }}</p>
-                                    <p>Repetições: {{ exercicio.repeticoes }}</p>
-                                </li>
-                            </ul>
+    <div class="container mt-5">
+        <main>
+        <header class="text-center mb-4">
+            <h1>Bem-vindo, {{ professor.nome }}</h1>
+        </header>
+        <div class="form-group ml-0 w-100 mb-5">
+            <h2>Usuário:</h2>
+            <ng-select id="capa-usuario" name="usuarioLista" [(ngModel)]="selectedUser" [placeholder]="selectedUser ? '' : 'Selecione o usuario:'">
+                <ng-option *ngFor="let user of users" [value]="user">
+                    {{ user.nome }}
+                </ng-option>
+            </ng-select> 
+        </div>
+       
+            <section class="user-info mb-4">
+                <h2>Informações do usuário</h2>
+                <p>Nome: {{ selectedUser?.nome }}</p>
+                <p>Email: {{selectedUser?.email }}</p>
+                <p>Função: {{selectedUser?.funcao }}</p>
+                <p>Data de cadastro: {{selectedUser?.dataCriacao }}</p>
+            </section>
+            <section class="training-plan">
+                <h2>Plano de treino</h2>
+                <div class="row">
+                    <div class="col-md-6 mb-4" *ngFor="let treino of treinos">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>{{ treino.nome }}</h3>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-unstyled">
+                                    <li *ngFor="let exercicio of treino.exercicios">
+                                        <h4>{{ exercicio.nome }}</h4>
+                                        <p>Séries: {{ exercicio.series }}</p>
+                                        <p>Repetições: {{ exercicio.repeticoes }}</p>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
-</div>
+            </section>
+        </main>
+    </div>
