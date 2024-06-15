@@ -78,7 +78,7 @@ th {
 }
 
 .card-body {
-  max-height: 500px;
+  max-height: 1000px;
   overflow-y: auto;
   overflow-x: auto;
 }
@@ -113,4 +113,25 @@ th {
   border: var(--bs-border-width) solid var(--bs-border-color);
   border-radius: var(--bs-border-radius);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  max-width: 140px;
+} 
+
+.input-filtro{
+  max-width: 100%!important;
+}
+.filtro{
+  margin-left: 1rem;
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.filtro i{
+  font-size: 25px;
+  margin-left: 1rem;
+  color: #00000083;
+}
+
+.form-control{
+  max-width: 250px;
 }
