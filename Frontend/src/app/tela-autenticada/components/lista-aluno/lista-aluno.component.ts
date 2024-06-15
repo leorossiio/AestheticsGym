@@ -28,16 +28,17 @@ export class ListaAlunoComponent implements OnInit {
 
   toggleEdit(user: any): void {
     if (user.isEditing) {
-      alert("Usuário salvo com sucesso!")
+      alert("Usuário salvo com sucesso!");
       this.salvarEdicao(user);
     }
     user.isEditing = !user.isEditing;
   }
+  
 
   salvarEdicao(user: any): void {
-    this.userService.editarUsuario(user).subscribe(
-      (data) => {
-        console.log('Usuário editado com sucesso:', data);
+    this.userService.editarUsuario(user.idUser, user).subscribe(
+      () => {
+        console.log('Usuário editado com sucesso:');
         this.carregarUsuarios(); // Atualiza a tabela após salvar a edição
       },
       (error) => {
@@ -45,6 +46,7 @@ export class ListaAlunoComponent implements OnInit {
       }
     );
   }
+  
 
   deletarUsuario(user: any): void {
     this.userService.deletarUsuario(user.idUser).subscribe(
