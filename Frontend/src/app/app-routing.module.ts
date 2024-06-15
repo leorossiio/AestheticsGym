@@ -7,6 +7,8 @@ import { TelaAutenticadaComponent } from './tela-autenticada/tela-autenticada.co
 import { ListaAlunoComponent } from './tela-autenticada/components/lista-aluno/lista-aluno.component';
 import { TreinoComponent } from './tela-autenticada/components/treino/treino.component';
 import { CadastroTreinoComponent } from './tela-autenticada/components/cadastro-treino/cadastro-treino.component';
+import { NutricaoCadastroComponent } from './tela-autenticada/components/nutricao-cadastro/nutricao-cadastro.component';
+import { NutricaoListaComponent } from './tela-autenticada/components/nutricao-lista/nutricao-lista.component';
 import { AcessoNegadoComponent } from './shared/acesso-negado/acesso-negado.component';
 import { PaginaNaoEncontradaComponent } from './shared/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { IsAuthorizationGuardProfessor } from './guard/authorization.guard';
@@ -23,7 +25,10 @@ const routes: Routes = [
     children: [
       { path: 'lista-aluno', component: ListaAlunoComponent, canActivate: [IsAuthorizationGuardProfessor]},
       { path: 'meu-treino', component: TreinoComponent },
-      { path: 'cadastro-treino', component: CadastroTreinoComponent }
+      { path: 'cadastro-treino', component: CadastroTreinoComponent, canActivate: [IsAuthorizationGuardProfessor]},
+      { path: 'nutricao-cadastro', component: NutricaoCadastroComponent, canActivate: [IsAuthorizationGuardProfessor]},
+      { path: 'nutricao-lista', component: NutricaoListaComponent,},
+
     ]
   },
   
