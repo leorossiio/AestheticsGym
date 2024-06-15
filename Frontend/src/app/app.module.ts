@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { TelaAutenticadaComponent } from './tela-autenticada/tela-autenticada.component';
 
 import { MenuAuthComponent } from './tela-autenticada/components/menu-auth/menu-auth.component';
-import { ListaAlunoComponent } from './tela-autenticada/components/lista-aluno/lista-aluno.component';
+import { ListaAlunoComponent,FilterPipe  } from './tela-autenticada/components/lista-aluno/lista-aluno.component';
 import { AddUserModalComponent } from './tela-autenticada/components/lista-aluno/component/add-user-modal/add-user-modal.component';
 import { TreinoComponent } from './tela-autenticada/components/treino/treino.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -52,6 +52,7 @@ import { NutricaoCadastroComponent } from './tela-autenticada/components/nutrica
     PaginaNaoEncontradaComponent,
     NutricaoListaComponent,
     NutricaoCadastroComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

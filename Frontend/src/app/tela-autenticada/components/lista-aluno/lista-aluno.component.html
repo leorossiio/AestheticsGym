@@ -1,8 +1,15 @@
 <div class="container mt-5">
+
+
     <div class="cls-limit-table">
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title text-center">USUÁRIOS</h2>
+                <h2 class="card-title text-center">LISTA DE USUÁRIOS</h2>
+            </div>
+            <div class="form-group fc mb-3 mt-3">
+                <input type="text" class="form-control input-filtro" placeholder="Filtrar usuários"
+                    [(ngModel)]="filtro"> <i class="bi bi-search"></i>s
+
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -17,7 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let user of users">
+                            <tr *ngFor="let user of users | filter: filtro">
                                 <td>
                                     <div *ngIf="!user.isEditing; else editName">
                                         <span>{{ user.nome }}</span>
