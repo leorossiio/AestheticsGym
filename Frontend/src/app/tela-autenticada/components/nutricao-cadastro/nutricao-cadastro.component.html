@@ -1,1 +1,44 @@
-<p>nutricao-cadastro works!</p>
+<div class="container mt-5">
+    <header class="text-center mb-4">
+      <h1>Bem-vindo, Professor</h1>
+    </header>
+    <main>
+      <section class="select-aluno mb-4">
+        <div class="form-group">
+          <label for="selectAluno">Selecione o aluno:</label>
+          <select id="selectAluno" class="form-control" [(ngModel)]="alunoSelecionado">
+            <option *ngFor="let aluno of alunos" [ngValue]="aluno">{{ aluno.nome }}</option>
+          </select>
+        </div>
+      </section>
+      <section *ngIf="alunoSelecionado" class="nutricao-info">
+        <h2>Informações do Aluno</h2>
+        <p><strong>Nome:</strong> {{ alunoSelecionado.nome }}</p>
+        <p><strong>Idade:</strong> {{ alunoSelecionado.idade }}</p>
+        <p><strong>Nível:</strong> {{ alunoSelecionado.nivel }}</p>
+      </section>
+      <section class="nutrition-plan">
+        <h2>Plano de Nutrição</h2>
+        <div class="form-group">
+          <label for="diaSemana">Selecione o dia da semana:</label>
+          <select id="diaSemana" class="form-control" [(ngModel)]="diaSelecionado">
+            <option *ngFor="let dia of diasSemana" [value]="dia">{{ dia }}</option>
+          </select>
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-6 mb-4" *ngFor="let refeicao of planoDoDia.refeicoes">
+            <div class="card">
+              <div class="card-header">
+                <h3>{{ refeicao.nome }}</h3>
+              </div>
+              <div class="card-body">
+                <p>Descrição: {{ refeicao.descricao }}</p>
+                <p>Calorias: {{ refeicao.calorias }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
