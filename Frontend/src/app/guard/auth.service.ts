@@ -90,7 +90,8 @@ export class AuthService {
 
   logout(): void {
     sessionStorage.removeItem('token');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
+    window.location.reload();
   }
 
   getUserName(): string {

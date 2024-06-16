@@ -15,7 +15,7 @@ import { HomePacotesComponent } from './homepage/home-pacotes/home-pacotes.compo
 import { HomeHeaderComponent } from './homepage/home-header/home-header.component';
 import { FormsModule } from '@angular/forms';
 import { TelaAutenticadaComponent } from './tela-autenticada/tela-autenticada.component';
-
+import { RouterModule } from '@angular/router';
 import { MenuAuthComponent } from './tela-autenticada/components/menu-auth/menu-auth.component';
 import { ListaAlunoComponent, FilterPipe } from './tela-autenticada/components/lista-aluno/lista-aluno.component';
 import { AddUserModalComponent } from './tela-autenticada/components/lista-aluno/component/add-user-modal/add-user-modal.component';
@@ -62,7 +62,8 @@ import { InicioComponent } from './tela-autenticada/components/inicio/inicio.com
     FormsModule,
     NgSelectModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
