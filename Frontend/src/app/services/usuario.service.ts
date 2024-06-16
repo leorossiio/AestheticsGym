@@ -21,6 +21,11 @@ export class UserService {
     return this.http.get<any[]>(`${this.baseUrl}/users/listarUsuarios`, { headers });
   }
 
+  cadastroAutenticado(user: any): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.post<any>(`${this.baseUrl}/users/cadastroUsuarioAutenticada`, user, { headers });
+  }
+
   cadastroNaoAutenticado(user: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/users/cadastroUsuarioNaoAutenticada`, user);
   }
