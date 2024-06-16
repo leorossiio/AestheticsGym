@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
@@ -12,10 +12,10 @@ import { NutricaoListaComponent } from './tela-autenticada/components/nutricao-l
 import { AcessoNegadoComponent } from './shared/acesso-negado/acesso-negado.component';
 import { PaginaNaoEncontradaComponent } from './shared/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { IsAuthorizationGuardProfessor } from './guard/authorization.guard';
-// import { IsAuthGuard } from './guard/auth.service';
+import { IsAuthGuard } from './guard/auth-guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redireciona para /home por padrão
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomepageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cadastro', component: CadastroComponent },
@@ -23,15 +23,15 @@ const routes: Routes = [
     path: 'aesthetic',
     component: TelaAutenticadaComponent,
     children: [
-      { path: 'lista-aluno', component: ListaAlunoComponent, canActivate: [IsAuthorizationGuardProfessor]},
-      { path: 'cadastro-treino', component: CadastroTreinoComponent, canActivate: [IsAuthorizationGuardProfessor]},
-      { path: 'nutricao-cadastro', component: NutricaoCadastroComponent, canActivate: [IsAuthorizationGuardProfessor]},
-      { path: 'meu-treino', component: TreinoComponent },
-      { path: 'meu-cardapio', component: NutricaoListaComponent},
+      { path: 'lista-aluno', component: ListaAlunoComponent, canActivate: [IsAuthGuard, IsAuthorizationGuardProfessor] },
+      { path: 'cadastro-treino', component: CadastroTreinoComponent, canActivate: [IsAuthGuard, IsAuthorizationGuardProfessor] },
+      { path: 'nutricao-cadastro', component: NutricaoCadastroComponent, canActivate: [IsAuthGuard, IsAuthorizationGuardProfessor] },
+      { path: 'meu-treino', component: TreinoComponent, canActivate: [IsAuthGuard] },
+      { path: 'meu-cardapio', component: NutricaoListaComponent, canActivate: [IsAuthGuard] },
     ]
   },
-  
-  
+
+
   { path: 'not-found', component: PaginaNaoEncontradaComponent },
   { path: 'forbidden', component: AcessoNegadoComponent },
   { path: '**', redirectTo: 'not-found' }
