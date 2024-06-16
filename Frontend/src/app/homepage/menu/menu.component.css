@@ -1,122 +1,66 @@
-.navbar {
-    background-color: #000;
-    padding: 10px 30px;
+.navbar{
+    background-color: black;
+    padding: 10px 30px 10px 30px;
     min-height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    height: auto;
     border-bottom: 2px solid #fff;
 }
 
-ul {
-    font-size: 20px;
+ul{
     color: white;
     display: flex;
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin: 10px;
     gap: 20px;
-    justify-content: center; /* Centraliza os itens */
-    flex: 1;
-
-   
-}
-
-.nav-lista-home {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 20px;
-    align-items: center;
-    justify-content: center; /* Centraliza os itens */
-}
-
-.nav-lista-home li {
-    cursor: pointer;
+    font-size: 20px;
 }
 
 .nav-lista-home a {
-    text-decoration: none;
-    color: #ddd;
-    transition: color 0.3s ease, border-bottom 0.3s ease;
-    padding-bottom: 5px;
-}
+    text-decoration: none; 
+    color: inherit; 
+    cursor: pointer;
+  }
 
-.nav-lista-home a:hover {
+  .nav-lista-home li{
+    cursor: pointer;
+  }
+
+  .nav-lista-home {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .nav-lista-home a:hover{
     color: #fff;
     border-bottom: 2px solid #fff;
-}
-
-.elemento {
-    overflow: hidden;
-}
+  }
 
 
-.logo-container {
-    flex: 1;
-}
-
-.menu-container {
-    flex: 2;
-    display: flex;
-    justify-content: center;
-}
-
-.buttons-container {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.logo {
+.logo{
     height: 80px;
     width: 80px;
     cursor: pointer;
-}
+}  
 
-.btn {
+
+.btn{
+    width: 90px;
     width: 100px;
     margin-left: 8px;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .btn-outline-dark {
-    border: 1.5px solid #fff;
-    color: #fff;
-    background-color: transparent;
+border: 1.5px solid white; /* Define a largura, o estilo e a cor da borda do botão */
+color: white;
 }
-
-.btn-outline-dark:hover {
-    background-color: #fff;
-    color: #000;
-}
-
-
-.btn-outline-light:hover {
-    background-color: blue;
-    color: #fff;
-}
-
-.custom-toggler {
-    color: rgba(92, 84, 84, 0.336) !important;
-    background-color: white;
+.btn-primary{
+    margin-left: 8px;
 }
 
 @media (max-width: 800px) {
-    .navbar {
+    .navbar{
         display: flex;
-        align-items: center;
-    }
-
-    .nav-lista-home {
         flex-direction: column;
-        align-items: center;
-    }
-
-    .buttons-container {
-        justify-content: center;
-        margin-top: 10px;
     }
 
     .btn {
@@ -125,3 +69,17 @@ ul {
         margin: 5px 0;
     }
 }
+
+.navbar a{
+    color: white;
+}
+
+.active {
+    font-weight: 600;
+}
+
+.custom-toggler {
+    color: rgba(92, 84, 84, 0.336) !important;
+    background-color: white;
+  }
+  
