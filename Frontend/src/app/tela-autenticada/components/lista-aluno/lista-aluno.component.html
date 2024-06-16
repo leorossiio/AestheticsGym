@@ -61,6 +61,7 @@
                                         (click)="toggleEdit(user)">
                                         <i class="bi" [ngClass]="user.isEditing ? 'bi-check-lg' : 'bi-pencil-fill'"></i>
                                     </button>
+                                    
                                     <button *ngIf="!user.isEditing" class="btn btn-danger btn-acao"
                                         (click)="deletarUsuario(user)">
                                         <i class="bi bi-trash"></i>
