@@ -17,7 +17,7 @@ servidor.use(express.json());
 
 // Configurações do CORS
 const corsOptions = {
-  origin: "http://localhost:4200", 
+  origin: "http://localhost:4200",
   optionsSuccessStatus: 200
 };
 
