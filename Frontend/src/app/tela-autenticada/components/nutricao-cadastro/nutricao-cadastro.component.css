@@ -1,75 +1,103 @@
 .container {
-    max-width: 900px;
-  }
-  
-  header {
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    padding: 10px 0;
-    text-align: center;
-  
-  }
-  
-  .user-info {
-    background-color: white;
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 5px;
-  }
+  max-width: 900px;
+}
 
-  .botoes-acao {
-    gap: 1rem;
-    justify-content: end;
-  }
+header {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px 0;
+  text-align: center;
+}
 
-  #novaRefeicao {
-    width: 60px;
-    font-size: 20px;
-  }
-  
-  h2 {
-    color: #333;
-  }
-  
-  .card {
-    border-radius: 5px;
-  }
-  
-  .card-header {
-    background-color: #000000;
-    border-bottom: 1px solid #ddd;
-    padding: 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-  }
-  
-  .card-body {
-    padding: 15px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-  }
-  
-  li:last-child {
-    border-bottom: none;
-  }
-  
-  h3 {
-    color: #fafafa;
-  }
-  
-  h4 {
-    color: #666;
-  }
-  
-  p {
-    margin: 5px 0;
-  }
-  
+.user-info {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.botoes-acao {
+  gap: 1rem;
+  justify-content: end;
+}
+
+#nomeRefeicao{
+  font-size: 1.5rem;
+}
+h3{
+  font-size: 1.5rem;
+}
+
+.btn-acao {
+  width: 50px;
+}
+#novaRefeicao {
+  width: 60px;
+  font-size: 20px;
+}
+
+#caloriasRefeicao{
+  margin-left: 5px;
+}
+
+
+.align-campos{
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  color: #333;
+}
+
+.card {
+  border-radius: 5px;
+}
+
+
+.descricaoRefeicao-textarea {
+  width: calc(100% - 30px);
+  height: 100px;
+  resize: vertical;
+  overflow-y: auto;
+  word-wrap: break-word;
+}
+
+
+.card-header {
+  background-color: #000000;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+h3 {
+  color: #fafafa;
+}
+
+h4 {
+  color: #666;
+}
+
+p {
+  margin: 5px 0;
+}

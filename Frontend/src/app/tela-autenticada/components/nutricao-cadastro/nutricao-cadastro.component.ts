@@ -13,6 +13,7 @@ interface Refeicao {
   nome: string;
   descricao: string;
   calorias: number;
+  isEditing?: boolean;  // Adicionando um campo opcional para edição
 }
 
 interface PlanoNutricional {
@@ -37,45 +38,6 @@ export class NutricaoCadastroComponent implements OnInit {
     dataCriacao: null
   };
 
-  constructor(private authService: AuthService, private userService: UserService) { }
-
-  ngOnInit(): void {
-    this.userRole = this.authService.getUserRole();
-    this.carregarUsuarios();
-  }
-
-
-  atualizarUserInformacoes(): void {
-    if (this.selectedUser) {
-      this.usuario.nome = this.selectedUser.nome;
-      this.usuario.email = this.selectedUser.email;
-      this.usuario.funcao = this.selectedUser.funcao;
-      this.usuario.dataCriacao = this.selectedUser.dataCriacao;
-    }
-  }
-
-
-  formatarData(data: string): string {
-    if (data) {
-      const dataCriacao = new Date(data);
-      return dataCriacao.toLocaleDateString('pt-BR');
-    } else {
-      return '';
-    }
-  }
-
-  carregarUsuarios(): void {
-    this.userService.listarUsuarios().subscribe({
-      next: (data) => {
-        this.users = data;
-        console.log('Usuários carregados:', this.users);
-      },
-      error: (error) => {
-        console.error('Erro ao carregar usuários:', error);
-      }
-    });
-  }
-
   diaSelecionado: string = 'Segunda-feira';
   diasSemana: string[] = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo', 'Vázio'];
 
@@ -98,7 +60,6 @@ export class NutricaoCadastroComponent implements OnInit {
         { nome: 'Jantar', descricao: 'Peixe grelhado com vegetais.', calorias: 300 }
       ]
     },
-    // Continue adicionando planos para os outros dias da semana
     'Quarta-feira': {
       refeicoes: [
         { nome: 'Café da manhã', descricao: 'Panqueca de aveia com mel.', calorias: 180 },
@@ -146,29 +107,70 @@ export class NutricaoCadastroComponent implements OnInit {
     },
 
     'Vázio': {
-      refeicoes: [
-        //Ao criar em adicionar, deve colocar somente o nome da refeição e o corpo dela com um botão de mais
-
-      ]
+      refeicoes: []
     }
   };
 
+  constructor(private authService: AuthService, private userService: UserService) { }
 
-  adicionarRefeicao(){
-    //Passar o parametro do dia;
-    //Passar o nome da refeição
-    //descricao
-    //calorias
+  ngOnInit(): void {
+    this.userRole = this.authService.getUserRole();
+    this.carregarUsuarios();
   }
 
+  carregarUsuarios(): void {
+    this.userService.listarUsuarios().subscribe({
+      next: (data) => {
+        this.users = data;
+        console.log('Usuários carregados:', this.users);
+      },
+      error: (error) => {
+        console.error('Erro ao carregar usuários:', error);
+      }
+    });
+  }
 
+  adicionarRefeicao() {
+    const novaRefeicao: Refeicao = { nome: '', descricao: '', calorias: 0, isEditing: true };
+    this.planosSemana[this.diaSelecionado].refeicoes.push(novaRefeicao);
+  }
 
-  aluno: Aluno = {
-    id: 1,
-    nome: '',
-    idade: 25,
-    nivel: 'Intermediário'
-  };
+  deletarRefeicao(refeicao: Refeicao) {
+    const index = this.planosSemana[this.diaSelecionado].refeicoes.indexOf(refeicao);
+    if (index !== -1) {
+      this.planosSemana[this.diaSelecionado].refeicoes.splice(index, 1);
+    }
+  }
+
+  editarRefeicao(refeicao: Refeicao) {
+    refeicao.isEditing = !refeicao.isEditing;
+  }
+
+  toggleEdit(refeicao: Refeicao) {
+    if (refeicao.isEditing) {
+      this.editarRefeicao(refeicao); // Save changes
+    } else {
+      refeicao.isEditing = true; // Enter edit mode
+    }
+  }
+
+  formatarData(data: string): string {
+    if (data) {
+      const dataCriacao = new Date(data);
+      return dataCriacao.toLocaleDateString('pt-BR');
+    } else {
+      return '';
+    }
+  }
+
+  atualizarUserInformacoes(): void {
+    if (this.selectedUser) {
+      this.usuario.nome = this.selectedUser.nome;
+      this.usuario.email = this.selectedUser.email;
+      this.usuario.funcao = this.selectedUser.funcao;
+      this.usuario.dataCriacao = this.selectedUser.dataCriacao;
+    }
+  }
 
   get planoDoDia(): PlanoNutricional {
     return this.planosSemana[this.diaSelecionado];
