@@ -29,8 +29,7 @@ export class NutricaoListaComponent implements OnInit {
 
   aluno = {
     nome: this.authService.getUserName(),
-    idade: 25,
-    nivel: 'Intermediário'
+    email: this.authService.getUserEmail()
   };
 
   planosSemana: PlanosSemana = {

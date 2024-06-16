@@ -99,7 +99,7 @@ th {
   }
 }
 
-.custom-select{
+.custom-select {
   padding: 6px 0px 6px 5px;
   display: block;
   width: 100%;
@@ -114,29 +114,36 @@ th {
   border-radius: var(--bs-border-radius);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   max-width: 140px;
-} 
-
-.input-filtro{
-  max-width: 100%!important;
 }
-.filtro{
+
+.input-filtro {
+  max-width: 100% !important;
+  padding: 0 0 0 10px;
+}
+.filtro {
   margin-left: 1rem;
   margin-right: 1rem;
   display: flex;
   flex-direction: row;
+  
 }
 
-.filtro i{
+.filtro i {
   font-size: 25px;
   margin-left: 1rem;
   color: #00000083;
 }
 
-.form-control{
+.form-control {
   max-width: 250px;
 }
 
-#novoUsuario{
+#novoUsuario {
   width: 90px;
   font-size: 20px;
+}
+
+.card-header {
+  color: white;
+  background-color: black;
 }
