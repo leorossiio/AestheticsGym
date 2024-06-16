@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/usuario.service';
+
 
 @Component({
   selector: 'app-add-user-modal',
@@ -10,8 +12,10 @@ import { Router } from '@angular/router';
 export class AddUserModalComponent {
   signupForm: FormGroup;
   showConfirmationMessage: boolean = false;
+  showErrorMessage: boolean = false;
+  errorMessage: string = '';
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private userService: UserService) {
     this.signupForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -29,14 +33,45 @@ export class AddUserModalComponent {
 
   onSubmit() {
     if (this.signupForm.valid) {
-      console.log("Novo usuário cadastrado com sucesso!");
-      console.log(this.signupForm.value);
+      const userData = {
+        nome: this.signupForm.get('name')?.value,
+        email: this.signupForm.get('email')?.value,
+        senha: this.signupForm.get('password')?.value,
+        confirmacaoSenha: this.signupForm.get('passwordConfirmation')?.value,
+        funcao: this.signupForm.get('role')?.value
+      };
 
-      this.showConfirmationMessage = true;
-
-      setTimeout(() => {
-        this.router.navigate(["/"]);
-      }, 3000);
+      this.userService.cadastroAutenticado(userData)
+        .subscribe(
+          (response: any) => {
+            console.log("Novo usuário autenticado cadastrado com sucesso!");
+            console.log(response);
+            this.showConfirmationMessage = true;
+            this.showErrorMessage = false;
+            setTimeout(() => {
+              window.location.reload();
+            }, 1500);
+          },
+          (error: any) => { // Explicitly type error as any
+            console.error("Erro ao cadastrar usuário:", error);
+            this.showErrorMessage = true;
+            this.showConfirmationMessage = false;
+            if (error.status === 400) {
+              const errorMessage = error.error.mensagem;
+              if (errorMessage.includes("Nome de usuário ou email já existe")) {
+                this.errorMessage = "Nome de usuário ou email já existe!";
+              } else if (errorMessage.includes("Senha e confirmação de senha não coincidem")) {
+                this.errorMessage = "Senha e confirmação de senha não coincidem!";
+              } else if (errorMessage.includes("Função inválida")) {
+                this.errorMessage = "Função inválida! Deve ser 'ALUNO' ou 'PROFESSOR'.";
+              } else {
+                this.errorMessage = "Ocorreu um erro durante o cadastro. Por favor, tente novamente mais tarde.";
+              }
+            } else {
+              this.errorMessage = "Ocorreu um erro durante o cadastro. Por favor, tente novamente mais tarde.";
+            }
+          }
+        );
     }
   }
 
@@ -44,6 +79,7 @@ export class AddUserModalComponent {
     this.signupForm.reset();
     this.signupForm.get('role')?.setValue(''); 
     this.showConfirmationMessage = false; 
+    this.showErrorMessage = false;
   }
 
   // Função para validar se os campos de senha e confirmação de senha são iguais
