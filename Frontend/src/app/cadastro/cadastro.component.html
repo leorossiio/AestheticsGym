@@ -6,7 +6,7 @@
           <div class="card-body p-5">
             <h2 class="text-uppercase text-center mb-5">Crie a sua conta!</h2>
 
-            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" autocomplete="off">
+            <form [formGroup]="signupForm" (ngSubmit)="cadastrar()" autocomplete="off">
               <div class="form-outline mb-4">
                 <label class="form-label" for="InsertName">Nome Completo</label>
                 <input
@@ -17,7 +17,7 @@
                   placeholder="Insira o Nome Completo..."
                   class="form-control form-control-lg"
                   autocomplete="off"
-                />
+                />  
                 <div
                   *ngIf="
                     signupForm.get('name')?.invalid &&
@@ -123,15 +123,23 @@
                 Cadastro realizado com sucesso!
               </div>
 
+              <div
+              *ngIf="showErrorMessage"
+              class="alert alert-danger mt-3 text-center"
+              role="alert"
+            >
+              Falha ao cadastrar usuário: Nome/Email em uso!
+            </div>
               <div class="d-flex justify-content-center">
                 <button
-                  id="cadastroBtn"
-                  type="submit"
-                  [disabled]="!signupForm.valid"
-                  class="btn btn-success btn-block btn-lg text-body-white mt-3"
-                >
-                  Cadastrar
-                </button>
+                id="cadastroBtn"
+                type="submit"
+                [disabled]="isFormSubmitted || !signupForm.valid"
+                class="btn btn-success btn-block btn-lg text-body-white mt-3"
+              >
+                Cadastrar
+              </button>
+              
               </div>
             </form>
             <p class="text-center text-muted mt-5 mb-0">
