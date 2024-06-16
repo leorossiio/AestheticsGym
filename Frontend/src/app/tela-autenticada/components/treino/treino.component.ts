@@ -14,8 +14,7 @@ export class TreinoComponent implements OnInit {
 
   aluno = {
     nome: this.authService.getUserName(),
-    email: this.authService.getUserEmail(),
-    nivel: 'Intermediário'
+    email: this.authService.getUserEmail()
   };
 
   treinos = [

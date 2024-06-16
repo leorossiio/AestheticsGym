@@ -27,6 +27,7 @@ import { AcessoNegadoComponent } from './shared/acesso-negado/acesso-negado.comp
 import { PaginaNaoEncontradaComponent } from './shared/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { NutricaoListaComponent } from './tela-autenticada/components/nutricao-lista/nutricao-lista.component';
 import { NutricaoCadastroComponent } from './tela-autenticada/components/nutricao-cadastro/nutricao-cadastro.component';
+import { InicioComponent } from './tela-autenticada/components/inicio/inicio.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { NutricaoCadastroComponent } from './tela-autenticada/components/nutrica
     PaginaNaoEncontradaComponent,
     NutricaoListaComponent,
     NutricaoCadastroComponent,
-    FilterPipe
+    FilterPipe,
+    InicioComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <div>
-      <img class="logo" src="./assets/imgs/logotipo.png" alt="logotipo" routerLink="/home" />
+      <img class="logo" src="./assets/imgs/logotipo.png" alt="logotipo" routerLink="/aesthetic/inicio" />
     </div>
     <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
       aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,20 +9,23 @@
     </button>
     <div class="lista-menu collapse navbar-collapse" id="navbarScroll">
       <ul class="nav-lista-auth navbar-nav my-2 my-lg-0 navbar-nav-scroll">
+        <li>
+          <a routerLink="/aesthetic/inicio">Início</a>
+        </li>
         <li *ngIf="userRole != 'ALUNO'">
-          <a routerLink="/aesthetic/lista-aluno">Usuários</a> <!--Caso: professor-->
+          <a routerLink="/aesthetic/lista-aluno">Usuários</a> 
         </li>
         <li>
-          <a routerLink="/aesthetic/meu-treino">Meu treino</a> <!--Caso: aluno-->
+          <a routerLink="/aesthetic/meu-treino">Meu treino</a> 
         </li>
         <li *ngIf="userRole != 'ALUNO'">
           <a routerLink="/aesthetic/cadastro-treino">Cadastrar treino</a>
         </li>
         <li *ngIf="userRole != 'ALUNO'">
-          <a routerLink="/aesthetic/nutricao-cadastro">Cadastrar cardápio </a> <!--Histórico de avaliação fisica do aluno-->
+          <a routerLink="/aesthetic/nutricao-cadastro">Cadastrar cardápio </a>
         </li>
         <li>
-          <a  routerLink="/aesthetic/meu-cardapio">Meu cardápio</a> <!--Histórico de avaliação fisica do aluno-->
+          <a  routerLink="/aesthetic/meu-cardapio">Meu cardápio</a>
         </li>
         <li>
           <a data-toggle="modal" data-target="#sobreModal">Sobre</a> <!--Histórico de avaliação fisica do aluno-->

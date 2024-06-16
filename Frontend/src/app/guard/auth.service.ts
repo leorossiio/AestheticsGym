@@ -35,10 +35,10 @@ export class AuthService {
   redirecionarUsuario(userRole: string) {
     switch (userRole.toUpperCase()) {
       case 'ALUNO':
-        this.router.navigate(['/aesthetic/meu-treino']);
+        this.router.navigate(['/aesthetic/inicio']);
         break;
       case 'PROFESSOR':
-        this.router.navigate(['/aesthetic/lista-aluno']);
+        this.router.navigate(['/aesthetic/inicio']);
         break;
       default:
         this.router.navigate(['/acesso-negado']);

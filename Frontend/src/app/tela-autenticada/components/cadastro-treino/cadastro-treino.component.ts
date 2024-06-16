@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/usuario.service';
 export class CadastroTreinoComponent implements OnInit {
   users: any[] = [];
   userRole: string | null = null;
-  selectedUser: any; // Adicione esta propriedade
+  selectedUser: any;
 
 
   usuario = {

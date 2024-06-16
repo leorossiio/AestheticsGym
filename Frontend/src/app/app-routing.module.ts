@@ -13,6 +13,7 @@ import { AcessoNegadoComponent } from './shared/acesso-negado/acesso-negado.comp
 import { PaginaNaoEncontradaComponent } from './shared/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { IsAuthorizationGuardProfessor } from './guard/authorization.guard';
 import { IsAuthGuard } from './guard/auth-guard';
+import { InicioComponent } from './tela-autenticada/components/inicio/inicio.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
     path: 'aesthetic',
     component: TelaAutenticadaComponent,
     children: [
+      { path: 'inicio', component: InicioComponent, canActivate: [IsAuthGuard] },
       { path: 'lista-aluno', component: ListaAlunoComponent, canActivate: [IsAuthGuard, IsAuthorizationGuardProfessor] },
       { path: 'cadastro-treino', component: CadastroTreinoComponent, canActivate: [IsAuthGuard, IsAuthorizationGuardProfessor] },
       { path: 'nutricao-cadastro', component: NutricaoCadastroComponent, canActivate: [IsAuthGuard, IsAuthorizationGuardProfessor] },
