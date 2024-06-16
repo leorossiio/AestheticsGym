@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-// import { UserService } from 'path/to/user.service';
+import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user-modal',
@@ -8,40 +8,56 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./add-user-modal.component.css']
 })
 export class AddUserModalComponent {
-  novoUsuario = {
-    nome: '',
-    email: '',
-    senha: '',
-    funcao: ''
-  };
-  confirmarSenha = '';
+  signupForm: FormGroup;
+  showConfirmationMessage: boolean = false;
 
-  // constructor(private userService: UserService) { }
+  constructor(private router: Router) {
+    this.signupForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
+      passwordConfirmation: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
+      role: new FormControl('', Validators.required) // Adicionando o FormControl para a função
+    }, { validators: this.passwordMatchValidator });
+  }
 
-  criarUsuario(): void { }
+  showPassword: boolean = false;
 
-  // criarUsuario(): void {
-  //   if (this.novoUsuario.senha !== this.confirmarSenha) {
-  //     alert('As senhas não coincidem');
-  //     return;
-  //   }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 
-  //   this.userService.criarUsuario(this.novoUsuario).subscribe(
-  //     (res) => {
-  //       // Handle success
-  //       console.log('Usuário criado com sucesso', res);
-  //       // Optionally, close the modal after successful user creation
-  //       this.fecharModal();
-  //     },
-  //     (error) => {
-  //       // Handle error
-  //       console.error('Erro ao criar usuário', error);
-  //     }
-  //   );
-  // }
+  onSubmit() {
+    if (this.signupForm.valid) {
+      console.log("Novo usuário cadastrado com sucesso!");
+      console.log(this.signupForm.value);
 
-  // fecharModal(): void {
-  //   // Close the modal using Bootstrap jQuery
-  //   $('#addUserModal').modal('hide');
-  // }
+      this.showConfirmationMessage = true;
+
+      setTimeout(() => {
+        this.router.navigate(["/"]);
+      }, 3000);
+    }
+  }
+
+  resetForm() {
+    this.signupForm.reset();
+    this.signupForm.get('role')?.setValue(''); 
+    this.showConfirmationMessage = false; 
+  }
+
+  // Função para validar se os campos de senha e confirmação de senha são iguais
+  passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('passwordConfirmation')?.value;
+
+    if (password !== confirmPassword) {
+      if (control.get('passwordConfirmation')) {
+        control.get('passwordConfirmation')?.setErrors({ passwordMismatch: true });
+      }
+      return { passwordMismatch: true };
+    } else {
+      return null;
+    }
+  }
 }

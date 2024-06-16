@@ -135,3 +135,8 @@ th {
 .form-control{
   max-width: 250px;
 }
+
+#novoUsuario{
+  width: 90px;
+  font-size: 20px;
+}

@@ -1,45 +1,74 @@
-<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title title" id="addUserModalLabel">Novo Usuário</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form (ngSubmit)="criarUsuario()" #userForm="ngForm">
-            <div class="form-row">
-              <div class="col-formlogin">
-                <label for="nome">Nome</label>
-                <input type="text" name="nome" placeholder="Digite seu nome" autofocus="true" [(ngModel)]="novoUsuario.nome" required />
-              </div>
-              <div class="col-formlogin">
-                <label for="email">E-mail</label>
-                <input type="email" name="email" placeholder="Digite seu e-mail" [(ngModel)]="novoUsuario.email" required />
-              </div>
-              <div class="col-formlogin">
-                <label for="password">Senha</label>
-                <input type="password" name="password" placeholder="Digite sua senha" [(ngModel)]="novoUsuario.senha" required />
-              </div>
-              <div class="col-formlogin">
-                <label for="confirm_password">Confirme a senha</label>
-                <input type="password" name="confirm_password" placeholder="Confirme sua senha" [(ngModel)]="confirmarSenha" required />
-              </div>
-              <div class="col-formlogin">
-                <label for="funcao">Função</label>
-                <select name="funcao" [(ngModel)]="novoUsuario.funcao" required>
-                  <option value="Aluno">Aluno</option>
-                  <option value="Professor">Professor</option>
-                </select>
-              </div>
-              <div class="botao-cadastro">
-                <button type="submit" class="btn btn-primary">Cadastrar</button>
-              </div>
+<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true" (hidden.bs.modal)="resetForm()">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title title" id="addUserModalLabel">Novo Usuário</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" autocomplete="off">
+          <div class="form-outline mb-4">
+            <label class="form-label" for="InsertName">Nome Completo</label>
+            <input type="text" formControlName="name" id="InsertName" name="LabelName" placeholder="Insira o Nome Completo..." class="form-control form-control-lg" autocomplete="off" />
+            <div *ngIf="signupForm.get('name')?.invalid && (signupForm.get('name')?.dirty || signupForm.get('name')?.touched)">
+              <div class="text-danger pt-1">Nome é obrigatório</div>
             </div>
-          </form>
-        </div>
+          </div>
+
+          <div class="form-outline mb-4">
+            <label class="form-label" for="InsertEmail">Email</label>
+            <input type="text" formControlName="email" id="InsertEmail" name="LabelEmail" placeholder="Ex:. exemplo@exemplo.com" class="form-control form-control-lg" autocomplete="off" />
+            <div *ngIf="signupForm.get('email')?.invalid && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">
+              <div class="text-danger pt-1">Por favor insira um e-mail válido</div>
+            </div>
+          </div>
+
+          <div class="form-outline mb-4">
+            <label class="form-label" for="typePasswordX">Senha</label>
+            <div class="input-group">
+              <input type="{{ showPassword ? 'text' : 'password' }}" id="typePasswordX" class="form-control form-control-lg" formControlName="password" required placeholder="Inserir Senha" autocomplete="new-password" />
+              <button type="button" class="btn btn-outline-dark" (click)="togglePasswordVisibility()">
+                <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+              </button>
+            </div>
+            <div *ngIf="signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">
+              <div class="text-danger pt-1">Por favor insira uma senha entre 6 e 20 caracteres</div>
+            </div>
+          </div>
+
+          <div class="form-outline mb-4">
+            <label class="form-label" for="confirmPasswordInput">Confirmação de senha</label>
+            <input type="{{ showPassword ? 'text' : 'password' }}" id="confirmPasswordInput" class="form-control form-control-lg" formControlName="passwordConfirmation" required placeholder="Confirmar Senha" autocomplete="new-password" />
+            <div *ngIf="signupForm.hasError('passwordMismatch') && (signupForm.get('passwordConfirmation')?.dirty || signupForm.get('passwordConfirmation')?.touched)">
+              <div class="text-danger pt-1">As senhas precisam ser iguais</div>
+            </div>
+          </div>
+
+          <div class="form-outline mb-4">
+            <label class="form-label">Função</label>
+            <select formControlName="role" id="capa-usuario" name="cadastroUsuario" class="form-control form-control-lg" required>
+              <option value="" disabled selected>Selecione a função:</option>
+              <option [ngValue]="1">ALUNO</option>
+              <option [ngValue]="2">PROFESSOR</option>
+            </select>
+            <div *ngIf="signupForm.get('role')?.invalid && (signupForm.get('role')?.dirty || signupForm.get('role')?.touched)">
+              <div class="text-danger pt-1">Por favor selecione uma função</div>
+            </div>
+          </div>
+
+          <div *ngIf="showConfirmationMessage" class="alert alert-success mt-3 text-center" role="alert">
+            Cadastro realizado com sucesso!
+          </div>
+
+          <div class="d-flex justify-content-center">
+            <button id="cadastroBtn" type="submit" [disabled]="!signupForm.valid" class="btn btn-success btn-block btn-lg text-body-white mt-3">
+              Cadastrar
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-  
+</div>
