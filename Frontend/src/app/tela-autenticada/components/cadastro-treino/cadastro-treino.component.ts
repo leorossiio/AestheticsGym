@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/guard/auth.service';
 import { UserService } from 'src/app/services/usuario.service';
 
@@ -16,11 +16,11 @@ export class CadastroTreinoComponent implements OnInit {
   usuario = {
     nome: '',
     email: '',
-    funcao:'',
-    dataCriacao:null
+    funcao: '',
+    dataCriacao: null
   };
 
-  constructor(private authService: AuthService, private userService: UserService ) { }
+  constructor(private authService: AuthService, private userService: UserService) { authService.sessaoExpiradaSubject.next(); }
 
   ngOnInit(): void {
     this.userRole = this.authService.getUserRole();
@@ -36,7 +36,7 @@ export class CadastroTreinoComponent implements OnInit {
     }
   }
 
-  professor={
+  professor = {
     nome: this.authService.getUserName()
   }
 
@@ -121,20 +121,20 @@ export class CadastroTreinoComponent implements OnInit {
   }
 
   carregarUsuarios(): void {
-      this.userService.listarUsuarios().subscribe({
-          next: (data) => {
-              this.users = data;
-              console.log('Usuários carregados:', this.users);
-          },
-          error: (error) => {
-              console.error('Erro ao carregar usuários:', error);
-          }
-      });
+    this.userService.listarUsuarios().subscribe({
+      next: (data) => {
+        this.users = data;
+        console.log('Usuários carregados:', this.users);
+      },
+      error: (error) => {
+        console.error('Erro ao carregar usuários:', error);
+      }
+    });
   }
-  
 
 
-  
+
+
 
 
 }

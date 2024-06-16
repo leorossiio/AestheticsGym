@@ -74,6 +74,15 @@
     background-color: rgba(0, 123, 255, 0.25);
 }
 
+.user-undefined{
+    font-size: 20px;
+    display: flex;
+    color: #00000080;
+    height: 150px;
+    justify-content: center;
+    align-items: center;
+}
+
 .erro {
     width: 100px;
 }

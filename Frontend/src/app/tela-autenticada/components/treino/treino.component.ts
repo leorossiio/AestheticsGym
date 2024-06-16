@@ -14,7 +14,7 @@ export class TreinoComponent implements OnInit {
 
   aluno = {
     nome: this.authService.getUserName(),
-    idade: 25,
+    email: this.authService.getUserEmail(),
     nivel: 'Intermediário'
   };
 
@@ -35,6 +35,7 @@ export class TreinoComponent implements OnInit {
         {
           nome: 'crossover',
           series: 4,
+  
           repeticoes: 10
         },
         {

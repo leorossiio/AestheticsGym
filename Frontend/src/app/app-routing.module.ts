@@ -24,11 +24,10 @@ const routes: Routes = [
     component: TelaAutenticadaComponent,
     children: [
       { path: 'lista-aluno', component: ListaAlunoComponent, canActivate: [IsAuthorizationGuardProfessor]},
-      { path: 'meu-treino', component: TreinoComponent },
       { path: 'cadastro-treino', component: CadastroTreinoComponent, canActivate: [IsAuthorizationGuardProfessor]},
       { path: 'nutricao-cadastro', component: NutricaoCadastroComponent, canActivate: [IsAuthorizationGuardProfessor]},
-      { path: 'nutricao-lista', component: NutricaoListaComponent,},
-
+      { path: 'meu-treino', component: TreinoComponent },
+      { path: 'meu-cardapio', component: NutricaoListaComponent},
     ]
   },
   

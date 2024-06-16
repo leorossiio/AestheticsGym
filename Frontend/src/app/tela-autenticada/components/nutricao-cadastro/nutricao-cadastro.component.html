@@ -14,8 +14,7 @@
         </ng-select>
       </div>
     </section>
-
-    <section class="user-info mb-4">
+    <section class="user-info mb-4" *ngIf="selectedUser">
       <h2>Informações do usuário</h2>
       <p>Nome: {{ selectedUser?.nome }}</p>
       <p>Email: {{selectedUser?.email }}</p>
@@ -28,7 +27,7 @@
       <p><strong>Idade:</strong> {{ alunoSelecionado.idade }}</p>
       <p><strong>Nível:</strong> {{ alunoSelecionado.nivel }}</p>
     </section>
-    <section class="nutrition-plan">
+    <section class="nutrition-plan" *ngIf="selectedUser">
       <h2>Plano de Nutrição</h2>
       <div class="form-group mt-2">
         <label for="diaSemana">Selecione o dia da semana:</label>
@@ -53,5 +52,6 @@
         </div>
       </div>
     </section>
+    <section *ngIf="!selectedUser" class="user-undefined"><span>Nenhum usuário selecionado</span></section>
   </main>
 </div>
