@@ -61,10 +61,12 @@
                 <input type="number" id="caloriasRefeicao" [(ngModel)]="refeicao.calorias" placeholder="Calorias" required min="0">
               </div>
               <div class="d-flex botoes-acao">
+                
                 <button class="btn btn-acao" [ngClass]="refeicao.isEditing ? 'btn-success' : 'btn-warning'"
                   (click)="toggleEdit(refeicao)" [disabled]="refeicao.isEditing && (!refeicao.nome || !refeicao.descricao || refeicao.calorias <= 0)">
                   <i class="bi" [ngClass]="refeicao.isEditing ? 'bi-check-lg' : 'bi-pencil-fill'"></i>
                 </button>
+                
                 <button *ngIf="!refeicao.isEditing" class="btn btn-danger btn-acao" (click)="deletarRefeicao(refeicao)">
                   <i class="bi bi-trash"></i>
                 </button>

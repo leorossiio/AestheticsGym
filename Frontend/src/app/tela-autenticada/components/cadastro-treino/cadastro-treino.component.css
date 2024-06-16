@@ -62,8 +62,11 @@
     margin: 5px 0;
   }
 
-
-  .labelSelect{
-    font-size: 30px;
+  .botoes-acao {
+    gap: 1rem;
+    justify-content: end;
   }
-  
+
+  .nome-treino{
+    margin-right: 1rem;
+  }

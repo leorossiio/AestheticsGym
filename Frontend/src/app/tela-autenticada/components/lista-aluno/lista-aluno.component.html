@@ -46,8 +46,10 @@
                                     </div>
                                     <ng-template #editFuncao>
                                         <select [(ngModel)]="user.funcao" class="select custom-select">
-                                            <option [ngValue]="1">ALUNO</option>
-                                            <option [ngValue]="2">PROFESSOR</option>
+                                            <option value="ALUNO">ALUNO</option>
+                                            <option value="PROFESSOR">PROFESSOR</option>
+
+
                                         </select>
                                     </ng-template>
                                 </td>
@@ -61,6 +63,7 @@
                                         (click)="toggleEdit(user)">
                                         <i class="bi" [ngClass]="user.isEditing ? 'bi-check-lg' : 'bi-pencil-fill'"></i>
                                     </button>
+                                    
                                     <button *ngIf="!user.isEditing" class="btn btn-danger btn-acao"
                                         (click)="deletarUsuario(user)">
                                         <i class="bi bi-trash"></i>
