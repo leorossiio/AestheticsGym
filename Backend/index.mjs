@@ -8,7 +8,7 @@ dotenv.config();
 
 import loginController from "./Controllers/loginController.js";
 import userController from "./Controllers/autenticacao/userController.js";
-// import todoListController from "./controllers/autenticacao/todoListController.js";
+import treinoController from "./Controllers/autenticacao/treinoController.js";
 
 const servidor = express();
 
@@ -26,7 +26,7 @@ servidor.use(cors(corsOptions));
 
 servidor.use("/login", loginController);
 servidor.use("/users", userController);
-// servidor.use("/todoList", todoListController);
+servidor.use("/treino", treinoController);
 
 // Conexão com o banco de dados MongoDB
 const PORT = process.env.PORT || 3000;  // Porta padrão caso não esteja definida no .env
