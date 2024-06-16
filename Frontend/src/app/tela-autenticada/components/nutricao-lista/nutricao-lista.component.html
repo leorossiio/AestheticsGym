@@ -1,10 +1,9 @@
 <div class="container mt-5">
   <main>
     <section class="user-info mb-4">
-      <h2>Informações do Aluno</h2>
+      <h2>Informações do usuário:</h2>
       <p>Nome: {{ aluno.nome }}</p>
       <p>Email: {{ aluno.email }}</p>
-
     </section>
     <section class="nutrition-plan">
       <h2>Plano de Nutrição</h2>
@@ -18,6 +17,9 @@
         </ng-select>
       </div>
       <div class="row mt-4">
+        <div class="col-md-6 mb-4" *ngIf="!planoDoDia || planoDoDia.refeicoes.length === 0">
+          <span>Nenhuma dieta criada para este dia.</span>
+        </div>
         <div class="col-md-6 mb-4" *ngFor="let refeicao of planoDoDia.refeicoes">
           <div class="card">
             <div class="card-header">
