@@ -43,6 +43,8 @@
     justify-content: center;
 }
 
+
+
 .rodape span {
     font-size: 20px;
     color: white;
@@ -72,3 +74,10 @@
         padding: 60px 0px 40px 0px;
     }
 }
+
+/* .tamanho-icon{
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+
+} */
