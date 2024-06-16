@@ -6,8 +6,8 @@ import { environment } from 'src/environment/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class TreinoService {
-  private baseUrl = environment.apiUrl; 
+export class DietaService {
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -16,9 +16,21 @@ export class TreinoService {
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
-  //listarExercicioByIdTreino
+  listarDietas(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/listarDietas`, { headers: this.getAuthHeaders() });
+  }
 
-  //SalvarExercicio (Criar e Editar)
+  
 
-  //DeletarExercicio
+  criarDieta(dietaData: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/cadastroDieta`, dietaData, { headers: this.getAuthHeaders() });
+  }
+
+  editarDieta(idDieta: string, dietaData: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/editarDieta/${idDieta}`, dietaData, { headers: this.getAuthHeaders() });
+  }
+
+  deletarDieta(idDieta: string): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/deletarDieta/${idDieta}`, { headers: this.getAuthHeaders() });
+  }
 }
