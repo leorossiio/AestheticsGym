@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '../services/usuario.service';
+
+
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
@@ -10,8 +13,10 @@ export class CadastroComponent {
 
   signupForm: FormGroup;
   showConfirmationMessage: boolean = false;
+  showErrorMessage: boolean = false;
+  isFormSubmitted: boolean = false; // Adicione a propriedade isFormSubmitted e inicialize como false
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private userService: UserService) {
     this.signupForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -26,20 +31,37 @@ export class CadastroComponent {
     this.showPassword = !this.showPassword;
   }
 
-  onSubmit() {
+  cadastrar() {
     if (this.signupForm.valid) {
-      console.log("Novo usuário cadastrado com sucesso!")
-      console.log(this.signupForm.value);
+      const userData = {
+        nome: this.signupForm.get('name')?.value,
+        email: this.signupForm.get('email')?.value,
+        senha: this.signupForm.get('password')?.value,
+        confirmacaoSenha: this.signupForm.get('passwordConfirmation')?.value
+      };
 
-      this.showConfirmationMessage = true;
-
-      setTimeout(() => {
-        this.router.navigate(["/"]);
-      }, 3000);
+      this.userService.cadastroNaoAutenticado(userData)
+        .subscribe(
+          (response: any) => {
+            console.log("Novo usuário cadastrado com sucesso!")
+            console.log(response);
+            this.showConfirmationMessage = true;
+            this.isFormSubmitted = true; // Defina isFormSubmitted como true após o envio do formulário
+            setTimeout(() => {
+              this.router.navigate(["/"]);
+            }, 1500);
+          },
+          (error) => {
+            console.error("Erro ao cadastrar usuário:", error);
+            this.showErrorMessage = true;
+            setTimeout(() => {
+              this.showErrorMessage = false;
+            }, 2000);
+          }
+        );
     }
   }
 
-  // Função para validar se os campos de senha e confirmação de senha são iguais
   passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const password = control.get('password')?.value;
     const confirmPassword = control.get('passwordConfirmation')?.value;

@@ -21,7 +21,7 @@ export class UserService {
     return this.http.get<any[]>(`${this.baseUrl}/users/listarUsuarios`, { headers });
   }
 
-  adicionarUsuario(user: any): Observable<any> {
+  cadastroNaoAutenticado(user: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/users/cadastroUsuarioNaoAutenticada`, user);
   }
 
