@@ -98,4 +98,20 @@ dietaController.get("/listarDietas", auth, async (req, res) => {
   }
 });
 
+// Rota para listar dietas por idUser
+dietaController.get("/listarDietasPorUsuario/:idUser", auth, async (req, res) => {
+  const idUser = req.params.idUser; // Captura o ID do usuário
+
+  try {
+    const dietas = await DietaModel.find({ idUser: idUser });
+    if (dietas.length === 0) {
+      return res.status(404).json({ mensagem: "Nenhuma dieta encontrada para este usuário" });
+    }
+    return res.status(200).json(dietas);
+  } catch (error) {
+    console.error(`Um erro ocorreu ao buscar dietas por usuário. ${error}`);
+    return res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = dietaController; // Exporta o router para ser utilizado na aplicação principal

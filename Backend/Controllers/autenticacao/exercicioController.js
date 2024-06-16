@@ -61,7 +61,7 @@ exercicioController.put("/editarExercicio/:idExercicio", auth, async (req, res) 
     return res.status(200).json({ mensagem: "Exercício atualizado com sucesso", exercicio });
   } catch (error) {
     console.error(`Um erro ocorreu ao editar o exercício. ${error}`);
-    return res.status500().json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 });
 
@@ -92,6 +92,22 @@ exercicioController.get("/listarExercicios", auth, async (req, res) => {
     return res.status(200).json(exercicios);
   } catch (error) {
     console.error(`Um erro ocorreu ao buscar exercícios. ${error}`);
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+// Rota para listar exercícios por idTreino
+exercicioController.get("/listarExerciciosPorTreino/:idTreino", auth, async (req, res) => {
+  const idTreino = req.params.idTreino; // Captura o ID do treino
+
+  try {
+    const exercicios = await ExercicioModel.find({ idTreino: idTreino });
+    if (exercicios.length === 0) {
+      return res.status(404).json({ mensagem: "Nenhum exercício encontrado para este treino" });
+    }
+    return res.status(200).json(exercicios);
+  } catch (error) {
+    console.error(`Um erro ocorreu ao buscar exercícios por treino. ${error}`);
     return res.status(500).json({ error: error.message });
   }
 });
