@@ -46,8 +46,10 @@
                                     </div>
                                     <ng-template #editFuncao>
                                         <select [(ngModel)]="user.funcao" class="select custom-select">
-                                            <option [ngValue]="1">ALUNO</option>
-                                            <option [ngValue]="2">PROFESSOR</option>
+                                            <option value="ALUNO">ALUNO</option>
+                                            <option value="PROFESSOR">PROFESSOR</option>
+
+
                                         </select>
                                     </ng-template>
                                 </td>
