@@ -14,6 +14,7 @@ export class AddUserModalComponent {
   showConfirmationMessage: boolean = false;
   showErrorMessage: boolean = false;
   errorMessage: string = '';
+  isFormSubmitted: boolean = false;
 
   constructor(private router: Router, private userService: UserService) {
     this.signupForm = new FormGroup({
@@ -48,7 +49,8 @@ export class AddUserModalComponent {
             console.log(response);
             this.showConfirmationMessage = true;
             this.showErrorMessage = false;
-            setTimeout(() => {
+            this.isFormSubmitted = true;
+            setTimeout(() => {       
               window.location.reload();
             }, 1500);
           },

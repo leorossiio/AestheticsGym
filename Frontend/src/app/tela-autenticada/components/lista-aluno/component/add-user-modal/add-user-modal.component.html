@@ -79,7 +79,7 @@
           </div>
 
           <div class="d-flex justify-content-center">
-            <button id="cadastroBtn" type="submit" [disabled]="!signupForm.valid"
+            <button id="cadastroBtn" type="submit"[disabled]="isFormSubmitted || !signupForm.valid"
               class="btn btn-success btn-block btn-lg text-body-white mt-3">
               Cadastrar
             </button>

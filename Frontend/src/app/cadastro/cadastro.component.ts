@@ -46,7 +46,7 @@ export class CadastroComponent {
             console.log("Novo usuário cadastrado com sucesso!")
             console.log(response);
             this.showConfirmationMessage = true;
-            this.isFormSubmitted = true; // Defina isFormSubmitted como true após o envio do formulário
+            this.isFormSubmitted = true;
             setTimeout(() => {
               this.router.navigate(["/"]);
             }, 1500);
