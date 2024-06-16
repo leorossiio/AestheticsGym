@@ -1,0 +1,62 @@
+<div class="container mt-5">
+    <header class="text-center">
+        <h1>Bem-vindo, {{ aluno.nome.split(' ')[0] }}</h1>
+    </header>
+
+    <main>
+        <section class="user-info mb-4">
+            <div class="row">   
+                <div *ngIf="userRole != 'ALUNO'" class="col-md-4">
+                    <div class="card mb-3 card-opcoes">
+                        <a routerLink="/aesthetic/lista-aluno">
+                            <div class="card-body text-center">
+                                <i class="bi bi-people-fill"></i>
+                                <h5 class="card-title">Usuários</h5>
+                            </div>
+                        </a>
+                    </div>     
+                </div>
+                <div *ngIf="userRole != 'ALUNO'" class="col-md-4">
+                    <div class="card mb-3 card-opcoes">
+                        <a routerLink="/aesthetic/cadastro-treino">
+                            <div class="card-body text-center">
+                                <i class="bi bi-card-checklist"></i>
+                                <h5 class="card-title">Cadastrar treino</h5>
+                            </div>
+                        </a>
+                    </div>     
+                </div>
+                <div *ngIf="userRole != 'ALUNO'" class="col-md-4">
+                    <div class="card mb-3 card-opcoes">
+                        <a routerLink="/aesthetic/nutricao-cadastro">
+                            <div class="card-body text-center">
+                                <i class="bi bi-clipboard-heart-fill"></i>
+                                <h5 class="card-title">Cadastrar cardápio</h5>
+                            </div>
+                        </a>
+                    </div>     
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-3 card-opcoes">
+                        <a routerLink="/aesthetic/meu-treino">
+                            <div class="card-body text-center">
+                                <i class="bi bi-lightning-charge-fill"></i>
+                                <h5 class="card-title">Meu treino</h5>
+                            </div>
+                        </a>
+                    </div>     
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-3 card-opcoes">
+                        <a routerLink="/aesthetic/meu-cardapio">
+                            <div class="card-body text-center">
+                                <i class="bi bi-bar-chart-steps"></i>
+                                <h5 class="card-title">Meu cardápio</h5>
+                            </div>
+                        </a>
+                    </div>     
+                </div>            
+            </div>
+        </section>
+    </main>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { UserService } from '../../../services/usuario.service';
+import { AuthService } from 'src/app/guard/auth.service';
 
 @Pipe({
     name: 'filter'
@@ -28,7 +29,7 @@ export class ListaAlunoComponent implements OnInit {
     users: any[] = [];
     filtro: string = '';
 
-    constructor(private userService: UserService) { }
+    constructor(private userService: UserService, private authService: AuthService) { authService.sessaoExpiradaSubject.next(); }
 
     ngOnInit(): void {
         this.carregarUsuarios();

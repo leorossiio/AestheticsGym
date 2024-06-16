@@ -12,14 +12,9 @@
   }
   
   .modal-body input,
-  .modal-body select {
-    padding: 15px;
-    font-size: 14px;
+  .modal-body select, ng-select {
+
     border: 1px solid #70707B;
-    margin-bottom: 20px;
-    margin-top: 5px;
-    transition: all linear 160ms;
-    outline: none;
     height: 48px;
     border-radius: 8px;
     background-color: #090707!important;
@@ -50,7 +45,7 @@
     flex-direction: column;
   }
 
-  .botao-cadastro{
+  #cadastroBtn{
     width: 100%;
     text-align: center;
   }

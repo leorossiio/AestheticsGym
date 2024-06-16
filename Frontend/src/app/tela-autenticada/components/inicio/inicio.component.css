@@ -3,47 +3,22 @@
 }
 
 header {
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
+  background-color: #000000;
+  color: white;
   padding: 10px 0;
   text-align: center;
+  border-radius: 5px 5px 0 0;
 }
 
 .user-info {
   background-color: white;
   border: 1px solid #ddd;
   padding: 15px;
-  border-radius: 5px;
+  border-radius: 0 0 5px 5px;
 }
 
-.botoes-acao {
-  gap: 1rem;
-  justify-content: end;
-}
-
-#nomeRefeicao{
-  font-size: 1.5rem;
-}
-h3{
-  font-size: 1.5rem;
-}
-
-.btn-acao {
-  width: 50px;
-}
-#novaRefeicao {
-  width: 60px;
-  font-size: 20px;
-}
-
-#caloriasRefeicao{
-  margin-left: 5px;
-}
-
-
-.align-campos{
-  display: flex;
-  flex-direction: column;
+i{
+  font-size: 30px;
 }
 
 h2 {
@@ -53,16 +28,6 @@ h2 {
 .card {
   border-radius: 5px;
 }
-
-
-.descricaoRefeicao-textarea {
-  width: calc(100% - 30px);
-  height: 100px;
-  resize: vertical;
-  overflow-y: auto;
-  word-wrap: break-word;
-}
-
 
 .card-header {
   background-color: #000000;
@@ -79,6 +44,19 @@ h2 {
 ul {
   list-style-type: none;
   padding: 0;
+}
+
+.card-opcoes {
+  background-color: #000000;
+}
+
+.card-opcoes:hover {
+  background-color: var(--primary-color);
+}
+
+.card-opcoes a {
+  text-decoration: none;
+  color: white;
 }
 
 li {

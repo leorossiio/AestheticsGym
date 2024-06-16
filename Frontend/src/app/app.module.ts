@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { TelaAutenticadaComponent } from './tela-autenticada/tela-autenticada.component';
 
 import { MenuAuthComponent } from './tela-autenticada/components/menu-auth/menu-auth.component';
-import { ListaAlunoComponent,FilterPipe  } from './tela-autenticada/components/lista-aluno/lista-aluno.component';
+import { ListaAlunoComponent, FilterPipe } from './tela-autenticada/components/lista-aluno/lista-aluno.component';
 import { AddUserModalComponent } from './tela-autenticada/components/lista-aluno/component/add-user-modal/add-user-modal.component';
 import { TreinoComponent } from './tela-autenticada/components/treino/treino.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -27,6 +27,7 @@ import { AcessoNegadoComponent } from './shared/acesso-negado/acesso-negado.comp
 import { PaginaNaoEncontradaComponent } from './shared/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { NutricaoListaComponent } from './tela-autenticada/components/nutricao-lista/nutricao-lista.component';
 import { NutricaoCadastroComponent } from './tela-autenticada/components/nutricao-cadastro/nutricao-cadastro.component';
+import { InicioComponent } from './tela-autenticada/components/inicio/inicio.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { NutricaoCadastroComponent } from './tela-autenticada/components/nutrica
     PaginaNaoEncontradaComponent,
     NutricaoListaComponent,
     NutricaoCadastroComponent,
-    FilterPipe
+    FilterPipe,
+    InicioComponent,
   ],
   imports: [
     BrowserModule,

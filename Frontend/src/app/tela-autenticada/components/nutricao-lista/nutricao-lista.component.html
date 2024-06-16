@@ -1,36 +1,35 @@
 <div class="container mt-5">
-    <header class="text-center mb-4">
-      <h1>Bem-vindo, {{ aluno.nome.split(' ')[0] }}</h1>
-    </header>
-    <main>
-      <section class="user-info mb-4">
-        <h2>Informações do Aluno</h2>
-        <p>Nome: {{ aluno.nome }}</p>
-        <p>Idade: {{ aluno.idade }}</p>
-        <p>Nível: {{ aluno.nivel }}</p>
-      </section>
-      <section class="nutrition-plan">
-        <h2>Plano de Nutrição</h2>
-        <div class="form-group">
-          <label for="diaSemana">Selecione o dia da semana:</label>
-          <select id="diaSemana" class="form-control" [(ngModel)]="diaSelecionado">
-            <option *ngFor="let dia of diasSemana" [value]="dia">{{ dia }}</option>
-          </select>
-        </div>
-        <div class="row mt-4">
-          <div class="col-md-6 mb-4" *ngFor="let refeicao of planoDoDia.refeicoes">
-            <div class="card">
-              <div class="card-header">
-                <h3>{{ refeicao.nome }}</h3>
-              </div>
-              <div class="card-body">
-                <p>Descrição: {{ refeicao.descricao }}</p>
-                <p>Calorias: {{ refeicao.calorias }}</p>
-              </div>
+  <main>
+    <section class="user-info mb-4">
+      <h2>Informações do Aluno</h2>
+      <p>Nome: {{ aluno.nome }}</p>
+      <p>Email: {{ aluno.email }}</p>
+
+    </section>
+    <section class="nutrition-plan">
+      <h2>Plano de Nutrição</h2>
+      <div class="form-group">
+        <label for="diaSemana">Selecione o dia da semana:</label>
+        <ng-select id="let dia of diasSemana" name="usuarioLista" [(ngModel)]="diaSelecionado"
+          [placeholder]="diaSelecionado ? '' : 'Selecione o dia:'">
+          <ng-option *ngFor="let dia of diasSemana" [value]="dia">
+            {{ dia }}
+          </ng-option>
+        </ng-select>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-6 mb-4" *ngFor="let refeicao of planoDoDia.refeicoes">
+          <div class="card">
+            <div class="card-header">
+              <h3>{{ refeicao.nome }}</h3>
+            </div>
+            <div class="card-body">
+              <p>Descrição: {{ refeicao.descricao }}</p>
+              <p>Calorias: {{ refeicao.calorias }}</p>
             </div>
           </div>
         </div>
-      </section>
-    </main>
-  </div>
-  
+      </div>
+    </section>
+  </main>
+</div>

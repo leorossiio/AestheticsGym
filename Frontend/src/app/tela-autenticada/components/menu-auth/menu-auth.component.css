@@ -28,6 +28,11 @@ ul{
     margin-right: auto;
   }
 
+  .nav-lista-auth a:hover{
+    color: #fff;
+    border-bottom: 2px solid #fff;
+  }
+
 
 .logo{
     height: 80px;

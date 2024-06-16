@@ -14,7 +14,6 @@ export class MenuAuthComponent implements OnInit {
 
   ngOnInit(): void {
     this.userRole = this.authService.getUserRole();
-    console.log('User role:', this.userRole);
   }
 
   logout(): void {
