@@ -16,6 +16,16 @@
     padding: 15px;
     border-radius: 5px;
   }
+
+  .botoes-acao {
+    gap: 1rem;
+    justify-content: end;
+  }
+
+  #novaRefeicao {
+    width: 60px;
+    font-size: 20px;
+  }
   
   h2 {
     color: #333;

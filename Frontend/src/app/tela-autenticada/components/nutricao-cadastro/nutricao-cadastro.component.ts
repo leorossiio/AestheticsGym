@@ -29,14 +29,15 @@ export class NutricaoCadastroComponent implements OnInit {
   users: any[] = [];
   userRole: string | null = null;
   selectedUser: any;
-usuario = {
+
+  usuario = {
     nome: '',
     email: '',
-    funcao:'',
-    dataCriacao:null
+    funcao: '',
+    dataCriacao: null
   };
 
-  constructor(private authService: AuthService, private userService: UserService ) { }
+  constructor(private authService: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.userRole = this.authService.getUserRole();
@@ -64,30 +65,19 @@ usuario = {
   }
 
   carregarUsuarios(): void {
-      this.userService.listarUsuarios().subscribe({
-          next: (data) => {
-              this.users = data;
-              console.log('Usuários carregados:', this.users);
-          },
-          error: (error) => {
-              console.error('Erro ao carregar usuários:', error);
-          }
-      });
+    this.userService.listarUsuarios().subscribe({
+      next: (data) => {
+        this.users = data;
+        console.log('Usuários carregados:', this.users);
+      },
+      error: (error) => {
+        console.error('Erro ao carregar usuários:', error);
+      }
+    });
   }
-  
-
-  
-
-
-  alunos: Aluno[] = [
-    { id: 1, nome: 'João', idade: 25, nivel: 'Intermediário' },
-    { id: 2, nome: 'Maria', idade: 30, nivel: 'Avançado' },
-    { id: 3, nome: 'Pedro', idade: 22, nivel: 'Iniciante' }
-    // Adicione mais alunos conforme necessário
-  ];
 
   diaSelecionado: string = 'Segunda-feira';
-  diasSemana: string[] = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'];
+  diasSemana: string[] = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo', 'Vázio'];
 
   planosSemana: { [key: string]: PlanoNutricional } = {
     'Segunda-feira': {
@@ -153,9 +143,23 @@ usuario = {
         { nome: 'Lanche da tarde', descricao: 'Suco verde detox.', calorias: 80 },
         { nome: 'Jantar', descricao: 'Wrap integral com frango e salada.', calorias: 240 }
       ]
+    },
+
+    'Vázio': {
+      refeicoes: [
+        //Ao criar em adicionar, deve colocar somente o nome da refeição e o corpo dela com um botão de mais
+
+      ]
     }
   };
 
+
+  adicionarRefeicao(){
+    //Passar o parametro do dia;
+    //Passar o nome da refeição
+    //descricao
+    //calorias
+  }
 
 
 
