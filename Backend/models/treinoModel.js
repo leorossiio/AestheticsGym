@@ -1,10 +1,14 @@
 const mongoose = require("mongoose");
+const { v4: uuidv4 } = require("uuid"); // Biblioteca para gerar UUIDs
 
-const TodoList = mongoose.model("tarefas", {
-  tarefaId: Number, //Utilizar um Random UUID para que não fique com um id aleatório do Mongo
-  tarefaDescricao: String, //Descriçao sibre a task
-  usuarioAtribuido: Number, //Pelo :idUser (imagine uma FK)
-  tarefaStatus: String //Não inciado, Em andamento e Finalizado 
+const TreinoSchema = new mongoose.Schema({
+  idTreino: { type: String, default: uuidv4, unique: true, required: true },
+  idUser: { type: String, required: true },
+  idUserCriador: { type: String, required: true },
+  nome: { type: String, required: true }, // Novo campo nome
+  dataCriacao: { type: Date, default: Date.now }
 });
 
-module.exports = TodoList;
+const TreinoModel = mongoose.model("Treino", TreinoSchema);
+
+module.exports = TreinoModel;

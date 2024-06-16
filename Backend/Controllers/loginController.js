@@ -17,7 +17,7 @@ const loginController = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { nome: user.nome, email: user.email, funcao: user.funcao },
+      { idUser: user.idUser ,nome: user.nome, email: user.email, funcao: user.funcao },
       process.env.JWT_SECRET,
       { expiresIn: "2d" }
     );

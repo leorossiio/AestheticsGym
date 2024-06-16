@@ -13,7 +13,7 @@ import Swal from "sweetalert2";
 export class AuthService {
   private baseUrl = environment.apiUrl + '/login';
   sessaoExpiradaSubject: Subject<void> = new Subject<void>();
-  
+
   constructor(private http: HttpClient, private router: Router) { }
 
   fazerLogin(credentials: { email: string, senha: string }): Observable<any> {
@@ -31,7 +31,7 @@ export class AuthService {
       map(response => response.token)
     );
   }
-  
+
   redirecionarUsuario(userRole: string) {
     switch (userRole.toUpperCase()) {
       case 'ALUNO':
@@ -49,13 +49,13 @@ export class AuthService {
   getAuthorizationToken(): string | null {
     return sessionStorage.getItem('token');
   }
-  
+
   getUserRole(): string {
     let token = this.getAuthorizationToken();
     if (!token) {
       return 'token não encontrado';
     }
-    
+
     let decoded: any = jwtDecode(token);
     if (decoded.funcao) {
       return decoded.funcao;
@@ -105,6 +105,19 @@ export class AuthService {
       return decoded.nome;
     }
     return 'nome não identificado no token';
+  }
+
+  getUserId(): string {
+    let token = this.getAuthorizationToken();
+    if (!token) {
+      return 'token não encontrado';
+    }
+
+    let decoded: any = jwtDecode(token);
+    if (decoded.idUser) {
+      return decoded.idUser;
+    }
+    return 'id não identificado no token';
   }
 
   getUserEmail(): string {
