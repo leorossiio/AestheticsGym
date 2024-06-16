@@ -1,4 +1,5 @@
-<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true" (hidden.bs.modal)="resetForm()">
+<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
+  aria-hidden="true" (hidden.bs.modal)="resetForm()">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,16 +12,20 @@
         <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" autocomplete="off">
           <div class="form-outline mb-4">
             <label class="form-label" for="InsertName">Nome Completo</label>
-            <input type="text" formControlName="name" id="InsertName" name="LabelName" placeholder="Insira o Nome Completo..." class="form-control form-control-lg" autocomplete="off" />
-            <div *ngIf="signupForm.get('name')?.invalid && (signupForm.get('name')?.dirty || signupForm.get('name')?.touched)">
+            <input type="text" formControlName="name" id="InsertName" name="LabelName"
+              placeholder="Insira o Nome Completo..." class="form-control form-control-lg" autocomplete="off" />
+            <div
+              *ngIf="signupForm.get('name')?.invalid && (signupForm.get('name')?.dirty || signupForm.get('name')?.touched)">
               <div class="text-danger pt-1">Nome é obrigatório</div>
             </div>
           </div>
 
           <div class="form-outline mb-4">
             <label class="form-label" for="InsertEmail">Email</label>
-            <input type="text" formControlName="email" id="InsertEmail" name="LabelEmail" placeholder="Ex:. exemplo@exemplo.com" class="form-control form-control-lg" autocomplete="off" />
-            <div *ngIf="signupForm.get('email')?.invalid && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">
+            <input type="text" formControlName="email" id="InsertEmail" name="LabelEmail"
+              placeholder="Ex:. exemplo@exemplo.com" class="form-control form-control-lg" autocomplete="off" />
+            <div
+              *ngIf="signupForm.get('email')?.invalid && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)">
               <div class="text-danger pt-1">Por favor insira um e-mail válido</div>
             </div>
           </div>
@@ -28,32 +33,41 @@
           <div class="form-outline mb-4">
             <label class="form-label" for="typePasswordX">Senha</label>
             <div class="input-group">
-              <input type="{{ showPassword ? 'text' : 'password' }}" id="typePasswordX" class="form-control form-control-lg" formControlName="password" required placeholder="Inserir Senha" autocomplete="new-password" />
+              <input type="{{ showPassword ? 'text' : 'password' }}" id="typePasswordX"
+                class="form-control form-control-lg" formControlName="password" required placeholder="Inserir Senha"
+                autocomplete="new-password" />
               <button type="button" class="btn btn-outline-dark" (click)="togglePasswordVisibility()">
                 <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
               </button>
             </div>
-            <div *ngIf="signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">
+            <div
+              *ngIf="signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)">
               <div class="text-danger pt-1">Por favor insira uma senha entre 6 e 20 caracteres</div>
             </div>
           </div>
 
           <div class="form-outline mb-4">
             <label class="form-label" for="confirmPasswordInput">Confirmação de senha</label>
-            <input type="{{ showPassword ? 'text' : 'password' }}" id="confirmPasswordInput" class="form-control form-control-lg" formControlName="passwordConfirmation" required placeholder="Confirmar Senha" autocomplete="new-password" />
-            <div *ngIf="signupForm.hasError('passwordMismatch') && (signupForm.get('passwordConfirmation')?.dirty || signupForm.get('passwordConfirmation')?.touched)">
+            <input type="{{ showPassword ? 'text' : 'password' }}" id="confirmPasswordInput"
+              class="form-control form-control-lg" formControlName="passwordConfirmation" required
+              placeholder="Confirmar Senha" autocomplete="new-password" />
+            <div
+              *ngIf="signupForm.hasError('passwordMismatch') && (signupForm.get('passwordConfirmation')?.dirty || signupForm.get('passwordConfirmation')?.touched)">
               <div class="text-danger pt-1">As senhas precisam ser iguais</div>
             </div>
           </div>
 
           <div class="form-outline mb-4">
             <label class="form-label">Função</label>
-            <select formControlName="role" id="capa-usuario" name="cadastroUsuario" class="form-control form-control-lg" required>
+            <select formControlName="role" id="capa-usuario" name="cadastroUsuario" class="form-control form-control-lg"
+              required>
               <option value="" disabled selected>Selecione a função:</option>
-              <option [ngValue]="1">ALUNO</option>
-              <option [ngValue]="2">PROFESSOR</option>
+              <option value="ALUNO">ALUNO</option>
+              <option value="PROFESSOR">PROFESSOR</option>
+
             </select>
-            <div *ngIf="signupForm.get('role')?.invalid && (signupForm.get('role')?.dirty || signupForm.get('role')?.touched)">
+            <div
+              *ngIf="signupForm.get('role')?.invalid && (signupForm.get('role')?.dirty || signupForm.get('role')?.touched)">
               <div class="text-danger pt-1">Por favor selecione uma função</div>
             </div>
           </div>
@@ -63,7 +77,8 @@
           </div>
 
           <div class="d-flex justify-content-center">
-            <button id="cadastroBtn" type="submit" [disabled]="!signupForm.valid" class="btn btn-success btn-block btn-lg text-body-white mt-3">
+            <button id="cadastroBtn" type="submit" [disabled]="!signupForm.valid"
+              class="btn btn-success btn-block btn-lg text-body-white mt-3">
               Cadastrar
             </button>
           </div>
