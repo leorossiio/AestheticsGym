@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/guard/auth.service';
 import { UserService } from 'src/app/services/usuario.service';
+import { DietaService } from 'src/app/services/dieta.service'; // Importe o serviço de Dieta
 
 interface Aluno {
   id: number;
   nome: string;
-  idade: number;
-  nivel: string;
 }
 
 interface Refeicao {
+  idDieta?: string;
   nome: string;
   descricao: string;
+  horarioRefeicao: string;
   calorias: number;
-  isEditing?: boolean;  // Adicionando um campo opcional para edição
+  isEditing?: boolean;
 }
 
 interface PlanoNutricional {
@@ -38,83 +39,28 @@ export class NutricaoCadastroComponent implements OnInit {
     dataCriacao: null
   };
 
-  diaSelecionado: string = 'Segunda-feira';
-  diasSemana: string[] = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo', 'Vázio'];
+  diaSelecionado: string = 'segunda-feira';
+  diasSemana: string[] = ['segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado', 'domingo'];
 
   planosSemana: { [key: string]: PlanoNutricional } = {
-    'Segunda-feira': {
-      refeicoes: [
-        { nome: 'Café da manhã', descricao: 'Omelete de claras com espinafre.', calorias: 150 },
-        { nome: 'Lanche da manhã', descricao: 'Iogurte grego com mel e nozes.', calorias: 100 },
-        { nome: 'Almoço', descricao: 'Peito de frango grelhado com batata-doce.', calorias: 350 },
-        { nome: 'Lanche da tarde', descricao: 'Smoothie de frutas vermelhas.', calorias: 150 },
-        { nome: 'Jantar', descricao: 'Sopa de legumes com quinoa.', calorias: 200 }
-      ]
-    },
-    'Terça-feira': {
-      refeicoes: [
-        { nome: 'Café da manhã', descricao: 'Aveia com banana e morango.', calorias: 200 },
-        { nome: 'Lanche da manhã', descricao: 'Maçã com pasta de amendoim.', calorias: 120 },
-        { nome: 'Almoço', descricao: 'Salada de quinoa com legumes frescos.', calorias: 250 },
-        { nome: 'Lanche da tarde', descricao: 'Barrinha de cereais.', calorias: 100 },
-        { nome: 'Jantar', descricao: 'Peixe grelhado com vegetais.', calorias: 300 }
-      ]
-    },
-    'Quarta-feira': {
-      refeicoes: [
-        { nome: 'Café da manhã', descricao: 'Panqueca de aveia com mel.', calorias: 180 },
-        { nome: 'Lanche da manhã', descricao: 'Laranja e castanhas.', calorias: 110 },
-        { nome: 'Almoço', descricao: 'Macarrão integral com molho de tomate e frango.', calorias: 320 },
-        { nome: 'Lanche da tarde', descricao: 'Iogurte natural com frutas.', calorias: 130 },
-        { nome: 'Jantar', descricao: 'Salada de atum com grão-de-bico.', calorias: 210 }
-      ]
-    },
-    'Quinta-feira': {
-      refeicoes: [
-        { nome: 'Café da manhã', descricao: 'Smoothie verde com espinafre e banana.', calorias: 170 },
-        { nome: 'Lanche da manhã', descricao: 'Biscoitos integrais com queijo cottage.', calorias: 120 },
-        { nome: 'Almoço', descricao: 'Arroz integral com legumes e carne magra.', calorias: 330 },
-        { nome: 'Lanche da tarde', descricao: 'Pêra e nozes.', calorias: 140 },
-        { nome: 'Jantar', descricao: 'Sopa de lentilha com cenoura.', calorias: 220 }
-      ]
-    },
-    'Sexta-feira': {
-      refeicoes: [
-        { nome: 'Café da manhã', descricao: 'Iogurte com granola.', calorias: 160 },
-        { nome: 'Lanche da manhã', descricao: 'Banana com aveia.', calorias: 130 },
-        { nome: 'Almoço', descricao: 'Quiche de espinafre com salada.', calorias: 280 },
-        { nome: 'Lanche da tarde', descricao: 'Suco de laranja natural.', calorias: 100 },
-        { nome: 'Jantar', descricao: 'Frango ao curry com arroz integral.', calorias: 300 }
-      ]
-    },
-    'Sábado': {
-      refeicoes: [
-        { nome: 'Café da manhã', descricao: 'Torrada integral com abacate.', calorias: 200 },
-        { nome: 'Lanche da manhã', descricao: 'Morango com iogurte natural.', calorias: 110 },
-        { nome: 'Almoço', descricao: 'Salmão grelhado com batatas.', calorias: 350 },
-        { nome: 'Lanche da tarde', descricao: 'Suco de beterraba e cenoura.', calorias: 90 },
-        { nome: 'Jantar', descricao: 'Pizza de massa integral com vegetais.', calorias: 250 }
-      ]
-    },
-    'Domingo': {
-      refeicoes: [
-        { nome: 'Café da manhã', descricao: 'Vitamina de frutas com aveia.', calorias: 180 },
-        { nome: 'Lanche da manhã', descricao: 'Tangerina e amêndoas.', calorias: 100 },
-        { nome: 'Almoço', descricao: 'Carne assada com legumes.', calorias: 340 },
-        { nome: 'Lanche da tarde', descricao: 'Suco verde detox.', calorias: 80 },
-        { nome: 'Jantar', descricao: 'Wrap integral com frango e salada.', calorias: 240 }
-      ]
-    },
-
-    'Vázio': {
-      refeicoes: []
-    }
+    'segunda-feira': { refeicoes: [] },
+    'terça-feira': { refeicoes: [] },
+    'quarta-feira': { refeicoes: [] },
+    'quinta-feira': { refeicoes: [] },
+    'sexta-feira': { refeicoes: [] },
+    'sábado': { refeicoes: [] },
+    'domingo': { refeicoes: [] }
   };
 
-  constructor(private authService: AuthService, private userService: UserService) { }
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+    private dietaService: DietaService // Injete o serviço de Dieta
+  ) { }
 
   ngOnInit(): void {
     this.userRole = this.authService.getUserRole();
+    this.carregarDietas();
     this.carregarUsuarios();
   }
 
@@ -131,15 +77,8 @@ export class NutricaoCadastroComponent implements OnInit {
   }
 
   adicionarRefeicao() {
-    const novaRefeicao: Refeicao = { nome: '', descricao: '', calorias: 0, isEditing: true };
+    const novaRefeicao: Refeicao = { nome: '', descricao: '', horarioRefeicao: '', calorias: 0, isEditing: true };
     this.planosSemana[this.diaSelecionado].refeicoes.push(novaRefeicao);
-  }
-
-  deletarRefeicao(refeicao: Refeicao) {
-    const index = this.planosSemana[this.diaSelecionado].refeicoes.indexOf(refeicao);
-    if (index !== -1) {
-      this.planosSemana[this.diaSelecionado].refeicoes.splice(index, 1);
-    }
   }
 
   editarRefeicao(refeicao: Refeicao) {
@@ -148,9 +87,29 @@ export class NutricaoCadastroComponent implements OnInit {
 
   toggleEdit(refeicao: Refeicao) {
     if (refeicao.isEditing) {
-      this.editarRefeicao(refeicao); // Save changes
+      this.salvarRefeicao(refeicao); // Save changes
     } else {
       refeicao.isEditing = true; // Enter edit mode
+    }
+  }
+
+  deletarRefeicao(refeicao: Refeicao) {
+    if (this.selectedUser) {
+      const index = this.planosSemana[this.diaSelecionado].refeicoes.indexOf(refeicao);
+      if (index !== -1) {
+        this.planosSemana[this.diaSelecionado].refeicoes.splice(index, 1);
+
+        if (refeicao.idDieta) {
+          this.dietaService.deletarDieta(refeicao.idDieta).subscribe({
+            next: (response) => {
+              console.log('Refeição deletada com sucesso');
+            },
+            error: (error) => {
+              console.error('Erro ao deletar refeição:', error);
+            }
+          });
+        }
+      }
     }
   }
 
@@ -169,6 +128,67 @@ export class NutricaoCadastroComponent implements OnInit {
       this.usuario.email = this.selectedUser.email;
       this.usuario.funcao = this.selectedUser.funcao;
       this.usuario.dataCriacao = this.selectedUser.dataCriacao;
+      this.carregarDietas();
+    }
+  }
+
+  carregarDietas(): void {
+    if (this.selectedUser) {
+      this.dietaService.listarDietaByUserSelecionado(this.selectedUser.idUser).subscribe({
+        next: (data: any[]) => { // Definindo o tipo como any[]
+          data.forEach((dieta: any) => { // Definindo o tipo como any
+            this.planosSemana[dieta.diaDaSemana].refeicoes.push({
+              idDieta: dieta.idDieta,
+              nome: dieta.nome,
+              descricao: dieta.descricao,
+              horarioRefeicao: dieta.horarioRefeicao,
+              calorias: dieta.calorias,
+              isEditing: false
+            });
+          });
+        },
+        error: (error) => {
+          console.error('Erro ao carregar dietas:', error);
+        }
+      });
+    }
+  }
+
+
+  salvarRefeicao(refeicao: Refeicao) {
+    if (this.selectedUser) {
+      const dietaData = {
+        nome: refeicao.nome,
+        descricao: refeicao.descricao,
+        calorias: refeicao.calorias,
+        diaDaSemana: this.diaSelecionado,
+        horarioRefeicao: refeicao.horarioRefeicao,
+        idUser: this.selectedUser.idUser
+      };
+
+      // Verifica se a refeição já tem um ID (indicando que já está salva no backend)
+      if (refeicao.idDieta) {
+        this.dietaService.editarDieta(refeicao.idDieta, dietaData).subscribe({
+          next: (response) => {
+            refeicao.isEditing = false;
+            console.log('Refeição atualizada com sucesso');
+          },
+          error: (error) => {
+            console.error('Erro ao atualizar refeição:', error);
+          }
+        });
+      } else {
+        this.dietaService.criarDieta(dietaData).subscribe({
+          next: (response) => {
+            refeicao.idDieta = response.idDieta; // Atribui o ID retornado pela API
+            refeicao.isEditing = false;
+            console.log('Refeição salva com sucesso');
+          },
+          error: (error) => {
+            console.error('Erro ao salvar refeição:', error);
+          }
+        });
+      }
     }
   }
 

@@ -7,7 +7,7 @@
       <div class="form-group ml-0 w-100 mb-4">
         <h2>Usuário:</h2>
         <ng-select id="capa-usuario" name="usuarioLista" [(ngModel)]="selectedUser"
-          [placeholder]="selectedUser ? '' : 'Selecione o usuario:'">
+          [placeholder]="selectedUser ? '' : 'Selecione o usuario:'" (change)="atualizarUserInformacoes()">
           <ng-option *ngFor="let user of users" [value]="user">
             {{ user.nome }}
           </ng-option>
@@ -21,13 +21,7 @@
       <p>Função: {{selectedUser?.funcao }}</p>
       <p>Data de cadastro: {{formatarData(selectedUser?.dataCriacao) }}</p>
     </section>
-    <section *ngIf="alunoSelecionado" class="nutricao-info">
-      <h2>Informações do Aluno</h2>
-      <p><strong>Nome:</strong> {{ alunoSelecionado.nome }}</p>
-      <p><strong>Idade:</strong> {{ alunoSelecionado.idade }}</p>
-      <p><strong>Nível:</strong> {{ alunoSelecionado.nivel }}</p>
-    </section>
-    <section class="nutrition-plan" *ngIf="selectedUser">
+    <section class="nutrition-plan mb-5" *ngIf="selectedUser">
       <h2>Plano de Nutrição</h2>
       <div class="form-group mt-2">
         <label for="diaSemana">Selecione o dia da semana:</label>
@@ -38,49 +32,42 @@
           </ng-option>
         </ng-select>
       </div>
-      <div class="row mt-4">
-        <div class="col-md-6 mb-4" *ngFor="let refeicao of planoDoDia.refeicoes">
-          <div class="card">
-            <div class="card-header">
-              <h3 *ngIf="!refeicao.isEditing">{{ refeicao.nome }}</h3>
-              <div *ngIf="refeicao.isEditing">
-                <input type="text" id="nomeRefeicao" [(ngModel)]="refeicao.nome" placeholder="Nome da Refeição" required>
-              </div>
+      <div class="nova-refeicao">
+        <button (click)="adicionarRefeicao()" class="btn btn-success mt-4">Nova refeição <i
+            class="bi bi-plus-circle"></i></button>
+      </div>
+      <div class="refeicoes-list mt-4" *ngFor="let refeicao of planoDoDia.refeicoes">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div *ngIf="refeicao.isEditing">
+              <input type="text" [(ngModel)]="refeicao.nome" placeholder="Nome da Refeição" class="form-control">
             </div>
-            <div class="card-body">
-              <p class="desc mb-5" *ngIf="!refeicao.isEditing">Descrição: <br>{{ refeicao.descricao }}</p>
-              <div *ngIf="refeicao.isEditing" class="mb-5 align-campos">
-                <label for="descricaoRefeicao">Descrição:</label>
-                <textarea id="descricaoRefeicao" [(ngModel)]="refeicao.descricao" placeholder="Descrição" [maxlength]="255" required class="descricaoRefeicao-textarea"></textarea>
-
-
-              </div>
-              <p *ngIf="!refeicao.isEditing">Calorias: {{ refeicao.calorias }} Kcal</p>
-              <div *ngIf="refeicao.isEditing">
-                <label for="caloriasRefeicao">Calorias:</label>
-                <input type="number" id="caloriasRefeicao" [(ngModel)]="refeicao.calorias" placeholder="Calorias" required min="0">
-              </div>
-              <div class="d-flex botoes-acao">
-                
-                <button class="btn btn-acao" [ngClass]="refeicao.isEditing ? 'btn-success' : 'btn-warning'"
-                  (click)="toggleEdit(refeicao)" [disabled]="refeicao.isEditing && (!refeicao.nome || !refeicao.descricao || refeicao.calorias <= 0)">
-                  <i class="bi" [ngClass]="refeicao.isEditing ? 'bi-check-lg' : 'bi-pencil-fill'"></i>
-                </button>
-                
-                <button *ngIf="!refeicao.isEditing" class="btn btn-danger btn-acao" (click)="deletarRefeicao(refeicao)">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </div>
+            <h5 class="card-title" *ngIf="!refeicao.isEditing" (click)="refeicao.isEditing = true">{{ refeicao.nome }}</h5>
+          </div>
+          <div class="card-body">
+            <div *ngIf="refeicao.isEditing">
+              <input type="text" [(ngModel)]="refeicao.descricao" placeholder="Descrição" class="form-control mb-2">
+              <input type="text" [(ngModel)]="refeicao.horarioRefeicao" placeholder="Horário" class="form-control mb-2">
+              <input type="number" [(ngModel)]="refeicao.calorias" placeholder="Calorias" class="form-control mb-2">
+            </div>
+            <div class="card-body-itens" *ngIf="!refeicao.isEditing">
+              <p class="card-text">Descrição: {{ refeicao.descricao }}</p>
+              <p class="card-text">Horário: {{ refeicao.horarioRefeicao }}</p>
+              <p class="card-text">Calorias: {{ refeicao.calorias }} kcal</p>
+            </div>
+            <div class="d-flex botoes-acao">
+              <button (click)="toggleEdit(refeicao)"
+                class="btn btn-acao {{ refeicao.isEditing ? 'btn-success' : 'btn-warning' }}">
+                <i class="bi" [ngClass]="refeicao.isEditing ? 'bi-check-lg' : 'bi-pencil-fill'"></i>
+              </button>
+              <button (click)="deletarRefeicao(refeicao)" class="btn btn-danger btn-acao"><i class="bi bi-trash"></i></button>
             </div>
           </div>
         </div>
       </div>
-      <div class="d-flex justify-content-center mt-3 mb-5">
-        <button id="novaRefeicao" (click)="adicionarRefeicao()" class="btn btn-success">
-          <i class="bi bi-plus-circle"></i>
-        </button>
-      </div>
     </section>
-    <section *ngIf="!selectedUser" class="user-undefined"><span>Nenhum usuário selecionado</span></section>
+    <section *ngIf="!selectedUser">
+      <p>Nenhum usuário selecionado</p>
+    </section>
   </main>
 </div>

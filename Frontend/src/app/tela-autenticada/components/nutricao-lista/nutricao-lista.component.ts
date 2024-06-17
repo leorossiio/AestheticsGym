@@ -24,7 +24,7 @@ type PlanosSemana = {
 export class NutricaoListaComponent implements OnInit {
   userRole: string | null = null;
   diaSelecionado: string = 'segunda-feira';
-  diasSemana: string[] = ['segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo'];
+  diasSemana: string[] = ['segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado', 'domingo'];
 
   aluno = {
     nome: this.authService.getUserName(),

@@ -9,6 +9,12 @@ header {
   text-align: center;
 }
 
+.nova-refeicao {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .user-info {
   background-color: white;
   border: 1px solid #ddd;
@@ -21,10 +27,10 @@ header {
   justify-content: end;
 }
 
-#nomeRefeicao{
+#nomeRefeicao {
   font-size: 1.5rem;
 }
-h3{
+h3 {
   font-size: 1.5rem;
 }
 
@@ -36,12 +42,11 @@ h3{
   font-size: 20px;
 }
 
-#caloriasRefeicao{
+#caloriasRefeicao {
   margin-left: 5px;
 }
 
-
-.align-campos{
+.align-campos {
   display: flex;
   flex-direction: column;
 }
@@ -54,7 +59,6 @@ h2 {
   border-radius: 5px;
 }
 
-
 .descricaoRefeicao-textarea {
   width: calc(100% - 30px);
   height: 100px;
@@ -63,13 +67,19 @@ h2 {
   word-wrap: break-word;
 }
 
-
 .card-header {
   background-color: #000000;
   border-bottom: 1px solid #ddd;
   padding: 10px;
+  color: white;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+}
+
+.card-body-itens {
+  gap: 0.25rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-body {
