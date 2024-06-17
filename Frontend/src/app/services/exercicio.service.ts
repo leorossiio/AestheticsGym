@@ -16,9 +16,27 @@ export class ExerciciosService {
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
-  //listarExercicioByIdTreino
+  listarExercicioByIdTreino(idTreino: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/exercicio/listarExerciciosPorTreino/${idTreino}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
 
-  //SalvarExercicio (Criar e Editar)
+  salvarExercicio(exercicioData: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/exercicio/cadastroExercicio`, exercicioData, {
+      headers: this.getAuthHeaders()
+    });
+  }
 
-  //DeletarExercicio
+  editarExercicio(idExercicio: string, exercicioData: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/exercicio/editarExercicio/${idExercicio}`, exercicioData, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  deletarExercicio(idExercicio: string): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/exercicio/deletarExercicio/${idExercicio}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
 }

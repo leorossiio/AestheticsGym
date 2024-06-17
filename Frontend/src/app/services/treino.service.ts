@@ -16,9 +16,27 @@ export class TreinoService {
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
-  //listarTreinoByIdUser
+  listarTreinoByIdUser(idUser: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/treino/listarTreinoPorUsuario/${idUser}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
 
-  //SalvarTreino (Criar e Editar)
+  salvarTreino(treinoData: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/treino/cadastroTreino`, treinoData, {
+      headers: this.getAuthHeaders()
+    });
+  }
 
-  //DeletarTreino
+  editarTreino(idTreino: string, treinoData: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/treino/editarTreino/${idTreino}`, treinoData, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  deletarTreino(idTreino: string): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/treino/deletarTreino/${idTreino}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
 }
