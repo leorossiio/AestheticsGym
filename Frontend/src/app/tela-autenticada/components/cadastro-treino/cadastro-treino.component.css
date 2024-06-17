@@ -70,3 +70,7 @@
   .nome-treino{
     margin-right: 1rem;
   }
+
+  .descricao-treino{
+    height: 250px
+  }

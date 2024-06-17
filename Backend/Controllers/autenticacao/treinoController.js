@@ -6,14 +6,15 @@ const treinoController = express.Router(); // Router do Express para gerenciar r
 
 // Rota para criar um novo treino
 treinoController.post("/cadastroTreino", auth, async (req, res) => {
-  const { idUser, idUserCriador, nome } = req.body;
+  const { idUser, idUserCriador, nome, descricao } = req.body;
 
   try {
     // Cria um novo treino
     const treino = new TreinoModel({
       idUser: idUser,
       idUserCriador: idUserCriador,
-      nome: nome // Adiciona o campo nome
+      nome: nome, // Adiciona o campo nome
+      descricao: descricao
     });
 
     await treino.save(); // Salva o treino no banco de dados
@@ -31,7 +32,7 @@ treinoController.post("/cadastroTreino", auth, async (req, res) => {
 // Rota para editar um treino
 treinoController.put("/editarTreino/:idTreino", auth, async (req, res) => {
   const idTreino = req.params.idTreino; // Captura o ID do treino
-  const { nome } = req.body; // Removeu o campo status e adicionou nome
+  const { nome, descricao } = req.body; // Removeu o campo status e adicionou nome
 
   try {
     // Verifica se o treino existe com base no ID
@@ -42,6 +43,7 @@ treinoController.put("/editarTreino/:idTreino", auth, async (req, res) => {
 
     // Atualiza os campos do treino
     if (nome) treino.nome = nome;
+    if (descricao) treino.descricao = descricao;
 
     // Salva as alterações
     await treino.save();

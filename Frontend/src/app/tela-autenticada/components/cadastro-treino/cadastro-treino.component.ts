@@ -23,7 +23,8 @@ export class CadastroTreinoComponent implements OnInit {
 
   // Adiciona uma propriedade para controlar a exibição do card de adição
   isAdding: boolean = false;
-  novoTreinoNome: string = ''; // Adiciona uma propriedade para armazenar o nome do novo treino
+  novoTreinoNome: string = '';
+  novoTreinoDescricao: string = ''; // Adiciona uma propriedade para armazenar o nome do novo treino
 
   constructor(
     private authService: AuthService,
@@ -68,17 +69,17 @@ export class CadastroTreinoComponent implements OnInit {
   }
 
   carregarExerciciosPorTreino(idTreino: string): void {
-    this.exercicioService.listarExercicioByIdTreino(idTreino).subscribe({
-      next: (exercicios) => {
-        const treino = this.treinos.find((t: any) => t.idTreino === idTreino);
-        if (treino) {
-          treino.exercicios = exercicios;
-        }
-      },
-      error: (error) => {
-        console.error('Erro ao carregar exercícios:', error);
-      }
-    });
+    // this.exercicioService.listarExercicioByIdTreino(idTreino).subscribe({
+    //   next: (exercicios) => {
+    //     const treino = this.treinos.find((t: any) => t.idTreino === idTreino);
+    //     if (treino) {
+    //       treino.exercicios = exercicios;
+    //     }
+    //   },
+    //   error: (error) => {
+    //     console.error('Erro ao carregar exercícios:', error);
+    //   }
+    // });
   }
 
   // Método para abrir o card de adição
@@ -89,7 +90,8 @@ export class CadastroTreinoComponent implements OnInit {
   // Método para cancelar a adição
   cancelarAdicao(): void {
     this.isAdding = false;
-    this.novoTreinoNome = ''; // Limpa o nome do novo treino
+    this.novoTreinoNome = '';
+    this.novoTreinoDescricao = '';
   }
 
   // Método para confirmar a adição do treino
@@ -98,7 +100,8 @@ export class CadastroTreinoComponent implements OnInit {
     const novoTreino = {
       idUser: this.selectedUser.idUser, // Ou a propriedade correta para identificar o usuário
       idUserCriador: idUserResponsavel,
-      nome: this.novoTreinoNome
+      nome: this.novoTreinoNome,
+      descricao: this.novoTreinoDescricao
     };
   
     this.treinoService.salvarTreino(novoTreino).subscribe(
@@ -110,6 +113,9 @@ export class CadastroTreinoComponent implements OnInit {
         this.isAdding = false;
         // Limpa o nome do novo treino
         this.novoTreinoNome = '';
+
+        // Limpa a descrição
+        this.novoTreinoDescricao = '';
   
         // Se desejar, você pode acessar o treino recém-criado aqui
         const treinoCriado = response.treino;
@@ -130,58 +136,58 @@ export class CadastroTreinoComponent implements OnInit {
   
 
   adicionarExercicio(treino: any, idUser: string): void {
-    if (treino && treino.idTreino) {
-      const novoExercicio = {
-        nome: '',
-        series: null,
-        repeticoes: null,
-        descricao: '',
-        isEditing: true,
-        idUser: idUser,
-        idTreino: treino.idTreino
-      };
+    // if (treino && treino.idTreino) {
+    //   const novoExercicio = {
+    //     nome: '',
+    //     series: null,
+    //     repeticoes: null,
+    //     descricao: '',
+    //     isEditing: true,
+    //     idUser: idUser,
+    //     idTreino: treino.idTreino
+    //   };
   
-      this.exercicioService.salvarExercicio(novoExercicio).subscribe(
-        (response) => {
+    //   this.exercicioService.salvarExercicio(novoExercicio).subscribe(
+    //     (response) => {
         
-          treino.exercicios.push(response);
-        },
-        (error) => {
-          console.error('Erro ao adicionar exercício:', error);
-        }
-      );
-    } else {
-      console.error('Treino não especificado ou ID do treino ausente.');
-    }
+    //       treino.exercicios.push(response);
+    //     },
+    //     (error) => {
+    //       console.error('Erro ao adicionar exercício:', error);
+    //     }
+    //   );
+    // } else {
+    //   console.error('Treino não especificado ou ID do treino ausente.');
+    // }
   }
   
   
 
 
   salvarEdicaoExercicio(exercicio: any): void {
-    this.exercicioService.editarExercicio(exercicio.idExercicio, exercicio).subscribe(
-      () => {
-        console.log('Exercício editado com sucesso');
-      },
-      (error) => {
-        console.error('Erro ao editar exercício:', error);
-      }
-    );
+    // this.exercicioService.editarExercicio(exercicio.idExercicio, exercicio).subscribe(
+    //   () => {
+    //     console.log('Exercício editado com sucesso');
+    //   },
+    //   (error) => {
+    //     console.error('Erro ao editar exercício:', error);
+    //   }
+    // );
   }
 
   deletarExercicio(treino: any, exercicio: any): void {
-    const index = treino.exercicios.indexOf(exercicio);
-    if (index !== -1) {
-      treino.exercicios.splice(index, 1);
-      this.exercicioService.deletarExercicio(exercicio.idExercicio).subscribe(
-        () => {
-          console.log('Exercício deletado com sucesso');
-        },
-        (error) => {
-          console.error('Erro ao deletar exercício:', error);
-        }
-      );
-    }
+    // const index = treino.exercicios.indexOf(exercicio);
+    // if (index !== -1) {
+    //   treino.exercicios.splice(index, 1);
+    //   this.exercicioService.deletarExercicio(exercicio.idExercicio).subscribe(
+    //     () => {
+    //       console.log('Exercício deletado com sucesso');
+    //     },
+    //     (error) => {
+    //       console.error('Erro ao deletar exercício:', error);
+    //     }
+    //   );
+    // }
   }
 
   toggleEditTreino(treino: any): void {

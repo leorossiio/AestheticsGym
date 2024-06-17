@@ -33,9 +33,9 @@ export class TreinoComponent implements OnInit {
       (treinos: any[]) => {
         this.treinos = treinos;
         // Para cada treino, carrega os exercícios correspondentes
-        for (const treino of this.treinos) {
-          this.carregarExerciciosPorTreino(treino.idTreino);
-        }
+        // for (const treino of this.treinos) {
+        //   this.carregarExerciciosPorTreino(treino.idTreino);
+        // }
       },
       error => {
         console.error('Erro ao carregar treinos:', error);
@@ -45,17 +45,25 @@ export class TreinoComponent implements OnInit {
 
   carregarExerciciosPorTreino(idTreino: string): void {
     // Chama o serviço para listar os exercícios do treino
-    this.exercicioService.listarExercicioByIdTreino(idTreino).subscribe(
-      (exercicios: any[]) => {
-        // Encontra o treino correspondente e atribui os exercícios a ele
-        const treino = this.treinos.find(t => t.idTreino === idTreino);
-        if (treino) {
-          treino.exercicios = exercicios;
-        }
-      },
-      error => {
-        console.error('Erro ao carregar exercícios:', error);
-      }
-    );
+    // this.exercicioService.listarExercicioByIdTreino(idTreino).subscribe(
+    //   (exercicios: any[]) => {
+    //     // Encontra o treino correspondente e atribui os exercícios a ele
+    //     const treino = this.treinos.find(t => t.idTreino === idTreino);
+    //     if (treino) {
+    //       treino.exercicios = exercicios;
+    //     }
+    //   },
+    //   error => {
+    //     console.error('Erro ao carregar exercícios:', error);
+    //   }
+    // );
   }
+
+  ajustarAlturaTextArea(event: any): void {
+    const textArea = event.target;
+    textArea.style.height = 'auto';
+    textArea.style.height = textArea.scrollHeight + 'px';
+  }
+
+
 }

@@ -5,7 +5,7 @@
       <p>Nome: {{ aluno.nome }}</p>
       <p>Email: {{ aluno.email }}</p>
     </section>
-    <section class="training-plan">
+    <section class="training-plan mb-5">
       <h2>Plano de Treino</h2>
       <div class="row" *ngIf="treinos && treinos.length > 0; else noTreinos">
         <div class="col-md-6 mb-4" *ngFor="let treino of treinos">
@@ -14,7 +14,14 @@
               <h3>{{ treino.nome }}</h3>
             </div>
             <div class="card-body">
-              <ul class="list-unstyled" *ngIf="treino.exercicios && treino.exercicios.length > 0; else noExercicios">
+             
+              <textarea [(ngModel)]="treino.descricao"
+          (input)="ajustarAlturaTextArea($event)"
+          class="form-control descricao-treino"
+          placeholder="Descricao..."></textarea>
+
+
+              <!-- <ul class="list-unstyled" *ngIf="treino.exercicios && treino.exercicios.length > 0; else noExercicios">
                 <li *ngFor="let exercicio of treino.exercicios">
                   <h4>{{ exercicio.nome }}</h4>
                   <p>Séries: {{ exercicio.serie }}</p>
@@ -24,7 +31,7 @@
               </ul>
               <ng-template #noExercicios>
                 <p>Nenhum exercício cadastrado</p>
-              </ng-template>
+              </ng-template> -->
             </div>
           </div>
         </div>

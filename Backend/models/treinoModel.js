@@ -6,7 +6,8 @@ const TreinoSchema = new mongoose.Schema({
   idUser: { type: String, required: true },
   idUserCriador: { type: String, required: true },
   nome: { type: String, required: true }, // Novo campo nome
-  dataCriacao: { type: Date, default: Date.now }
+  dataCriacao: { type: Date, default: Date.now },
+  descricao: { type: String, required: true },
 });
 
 const TreinoModel = mongoose.model("Treino", TreinoSchema);
