@@ -5,6 +5,7 @@ import { DietaService } from 'src/app/services/dieta.service';
 interface Refeicao {
   nome: string;
   descricao: string;
+  horarioRefeicao: string;
   calorias: number;
 }
 
@@ -38,7 +39,7 @@ export class NutricaoListaComponent implements OnInit {
   ngOnInit(): void {
     this.userRole = this.authService.getUserRole();
     this.carregarDietas();
-    
+
   }
 
   carregarDietas(): void {
@@ -62,13 +63,14 @@ export class NutricaoListaComponent implements OnInit {
       acc[dia].refeicoes.push({
         nome: dieta.nome,
         descricao: dieta.descricao,
+        horarioRefeicao: dieta.horarioRefeicao,
         calorias: dieta.calorias
       });
       return acc;
     }, {} as PlanosSemana);
     console.log('Planos de semana:', this.planosSemana); // Adicionar console.log aqui
   }
-  
+
   get planoDoDia(): PlanoNutricional {
     return this.planosSemana[this.diaSelecionado] || { refeicoes: [] };
   }
