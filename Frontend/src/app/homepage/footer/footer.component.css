@@ -14,6 +14,7 @@
 
 .rodape p {
     margin-bottom: 5px;
+    font-size: 16px;
 }
 
 .logo {
@@ -75,9 +76,12 @@
     }
 }
 
-/* .tamanho-icon{
-    font-size: 20px;
+.tamanho-icon{
     display: flex;
     flex-direction: row;
+    gap: 1rem;
+}
 
-} */
+.tamanho-icon a{
+    font-size: 20px!important;
+}
