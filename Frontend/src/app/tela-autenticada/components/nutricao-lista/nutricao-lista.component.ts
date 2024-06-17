@@ -38,7 +38,7 @@ export class NutricaoListaComponent implements OnInit {
   ngOnInit(): void {
     this.userRole = this.authService.getUserRole();
     this.carregarDietas();
-    console.log('Dia selecionado:', this.diaSelecionado); // Adicionar console.log aqui
+    
   }
 
   carregarDietas(): void {
