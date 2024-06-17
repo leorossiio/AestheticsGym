@@ -66,7 +66,6 @@ p {
 .descricao-treino {
   min-height: 300px; /* Altura mínima inicial */
   height: auto; /* Permite que o textarea cresça */
- 
- 
+  background-color: white;
+  border: none;
 }
-
