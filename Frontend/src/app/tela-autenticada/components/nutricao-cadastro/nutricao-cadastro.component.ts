@@ -128,9 +128,14 @@ export class NutricaoCadastroComponent implements OnInit {
       this.usuario.email = this.selectedUser.email;
       this.usuario.funcao = this.selectedUser.funcao;
       this.usuario.dataCriacao = this.selectedUser.dataCriacao;
-      this.carregarDietas();
+      if (this.selectedUser.idUser) {
+        this.carregarDietas();
+      } else {
+        console.error('ID do usuário não especificado.');
+      }
     }
   }
+  
 
   carregarDietas(): void {
     if (this.selectedUser) {

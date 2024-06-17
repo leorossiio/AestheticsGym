@@ -20,7 +20,7 @@
         <div class="col-md-6 mb-4" *ngIf="!planoDoDia || planoDoDia.refeicoes.length === 0">
           <span>Nenhuma dieta criada para este dia.</span>
         </div>
-        <div class="col-md-6 mb-4" *ngFor="let refeicao of planoDoDia.refeicoes">
+        <div class="col-md-6 mb-5" *ngFor="let refeicao of planoDoDia.refeicoes">
           <div class="card">
             <div class="card-header">
               <h3>{{ refeicao.nome }}</h3>

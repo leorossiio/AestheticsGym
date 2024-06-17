@@ -37,7 +37,7 @@
             class="bi bi-plus-circle"></i></button>
       </div>
       <div class="refeicoes-list mt-4" *ngFor="let refeicao of planoDoDia.refeicoes">
-        <div class="card mb-3">
+        <div class="card mb-5">
           <div class="card-header">
             <div *ngIf="refeicao.isEditing">
               <input type="text" [(ngModel)]="refeicao.nome" placeholder="Nome da Refeição" class="form-control">
@@ -53,6 +53,7 @@
             <div class="card-body-itens" *ngIf="!refeicao.isEditing">
               <p class="card-text">Descrição: {{ refeicao.descricao }}</p>
               <p class="card-text">Horário: {{ refeicao.horarioRefeicao }}</p>
+         
               <p class="card-text">Calorias: {{ refeicao.calorias }} kcal</p>
             </div>
             <div class="d-flex botoes-acao">
@@ -66,8 +67,8 @@
         </div>
       </div>
     </section>
-    <section *ngIf="!selectedUser">
-      <p>Nenhum usuário selecionado</p>
-    </section>
+    <section *ngIf="!selectedUser" class="user-undefined">
+      <span>Nenhum usuário selecionado</span>
+  </section>
   </main>
 </div>

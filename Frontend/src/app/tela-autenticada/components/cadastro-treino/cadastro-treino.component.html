@@ -6,7 +6,7 @@
         <div class="form-group ml-0 w-100 mb-4">
             <h2>Usuário:</h2>
             <ng-select id="capa-usuario" name="usuarioLista" [(ngModel)]="selectedUser"
-                [placeholder]="selectedUser ? '' : 'Selecione o usuario:'">
+                [placeholder]="selectedUser ? '' : 'Selecione o usuário:'" (change)="atualizarUserInformacoes()">
                 <ng-option *ngFor="let user of users" [value]="user">
                     {{ user.nome }}
                 </ng-option>
@@ -22,79 +22,117 @@
         </section>
 
         <section *ngIf="selectedUser" class="training-plan">
+            <div class="d-flex justify-content-center mt-3 mb-3">
+                <!-- Botão para adicionar novo treino -->
+                <button id="novoTreino" class="btn btn-success" (click)="abrirAdicao()">
+                    Adicionar Treino<i class="bi bi-plus-circle"></i>
+                </button>
+            </div>
+
+            <!-- Card de adição de treino -->
+            <div *ngIf="isAdding" class="card mb-3">
+                <div class="card-body">
+                    <input type="text" class="form-control mb-2" [(ngModel)]="novoTreinoNome"
+                        placeholder="Nome do novo treino">
+                    <div class="d-flex justify-content-end">
+                        <!-- Botão para confirmar adição do treino -->
+                        <button class="btn btn-success mr-2" (click)="confirmarAdicao()">Confirmar</button>
+                        <!-- Botão para cancelar adição do treino -->
+                        <button class="btn btn-danger" (click)="cancelarAdicao()">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
             <h2>Plano de Treino</h2>
             <div class="row">
-                
                 <div class="col-md-6 mb-4" *ngFor="let treino of treinos">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
-
-                            <h3 *ngIf="!treino.isEditing">{{ treino.nome }}</h3>
-
-                            <input  *ngIf="treino.isEditing" [(ngModel)]="treino.nome" class="form-control nome-treino" placeholder="Nome...">
-
+                            <!-- Exibição ou edição do nome do treino -->
+                            <h3 *ngIf="!treino.isEditing" (click)="toggleEditTreino(treino)">{{ treino.nome }}</h3>
+                            <input *ngIf="treino.isEditing" [(ngModel)]="treino.nome" class="form-control nome-treino"
+                                placeholder="Nome...">
                             <div class="d-flex botoes-acao">
-
-                                <button class="btn btn-acao " [ngClass]="treino.isEditing ? 'btn-success' : 'btn-warning'"(click)="toggleEditTreino(treino)">
+                                <button class="btn btn-acao"
+                                    [ngClass]="treino.isEditing ? 'btn-success' : 'btn-warning'"
+                                    (click)="toggleEditTreino(treino)">
                                     <i class="bi" [ngClass]="treino.isEditing ? 'bi-check-lg' : 'bi-pencil-fill'"></i>
                                 </button>
-
-                                <button class="btn btn-danger btn-acao" (click)="deletarTreino(treino)" *ngIf="!treino.isEditing"
-                                (click)="deletarTreino(treino)">
+                                <button class="btn btn-danger btn-acao" *ngIf="!treino.isEditing"
+                                    (click)="deletarTreino(treino)">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </div>
                         </div>
 
+                        <!-- Corpo do card do treino -->
                         <div class="card-body">
-                            <ul class="list-unstyled">
-                                <li *ngFor="let exercicio of treino.exercicios" class="mb-3">
-                                    <div *ngIf="!exercicio.isEditing">
-                                      <h4>{{ exercicio.nome }}</h4>
-                                      <p>Séries: {{ exercicio.series }}</p>
-                                      <p>Repetições: {{ exercicio.repeticoes }}</p>
-                                      <p>Descrição: {{ exercicio.descricao }}</p>
-                                    </div>
-                                    <div *ngIf="exercicio.isEditing">
-                                      <label for="">Nome do exercício:</label>
-                                      <input [(ngModel)]="exercicio.nome" class="form-control mb-2" placeholder="Nome do exercício">
-                                      <label for="">Séries:</label>
-                                      <input [(ngModel)]="exercicio.series" type="number" class="form-control mb-2" placeholder="Séries">
-                                      <label for="">Repetições:</label>
-                                      <input [(ngModel)]="exercicio.repeticoes" type="number" class="form-control mb-2" placeholder="Repetições">
-                                      <label for="">Descrição:</label>
-                                      <textarea [(ngModel)]="exercicio.descricao" class="form-control mb-2" placeholder="Descrição do exercício"></textarea>
-                                    </div>
-                                  
-                                    <div class="d-flex justify-content-end botoes-acao">
-                                      <button class="btn btn-acao "[ngClass]="exercicio.isEditing ? 'btn-success' : 'btn-warning'" (click)="toggleEditExercicio(exercicio)">
-                                        <i class="bi" [ngClass]="exercicio.isEditing ? 'bi-check-lg' : 'bi-pencil-fill'"></i>
-                                      </button>
-                                      
-                                      <button class="btn btn-danger btn-acao" *ngIf="!exercicio.isEditing" (click)="deletarExercicio(treino, exercicio)">
-                                        <i class="bi bi-trash"></i>
-                                      </button>
-                                    </div>
-                                  </li>
-                                  
-                            </ul>
+                            <!-- Exibição dos exercícios do treino -->
+                            <ng-container *ngIf="treino.exercicios && treino.exercicios.length > 0; else noExercicios">
+                                <ul class="list-unstyled">
+                                    <!-- Iteração sobre os exercícios do treino -->
+                                    <li *ngFor="let exercicio of treino.exercicios" class="mb-3">
+                                        <!-- Conteúdo do exercício -->
+                                        <!-- Exibição ou edição do exercício -->
+                                        <!-- Lógica de exibição dos exercícios permanece a mesma -->
+                                        <div *ngIf="!exercicio.isEditing">
+                                            <h4>{{ exercicio.nome }}</h4>
+                                            <p>Séries: {{ exercicio.series }}</p>
+                                            <p>Repetições: {{ exercicio.repeticoes }}</p>
+                                            <p>Descrição: {{ exercicio.descricao }}</p>
+                                        </div>
+                                        <!-- Edição do exercício -->
+                                        <div *ngIf="exercicio.isEditing">
+                                            <label for="">Nome do exercício:</label>
+                                            <input [(ngModel)]="exercicio.nome" class="form-control mb-2"
+                                                placeholder="Nome do exercício">
+                                            <label for="">Séries:</label>
+                                            <input [(ngModel)]="exercicio.series" type="number"
+                                                class="form-control mb-2" placeholder="Séries">
+                                            <label for="">Repetições:</label>
+                                            <input [(ngModel)]="exercicio.repeticoes" type="number"
+                                                class="form-control mb-2" placeholder="Repetições">
+                                            <label for="">Descrição:</label>
+                                            <textarea [(ngModel)]="exercicio.descricao" class="form-control mb-2"
+                                                placeholder="Descrição do exercício"></textarea>
+                                        </div>
+                                        <!-- Botões de ação do exercício -->
+                                        <div class="d-flex justify-content-end botoes-acao">
+                                            <button class="btn btn-acao"
+                                                [ngClass]="exercicio.isEditing ? 'btn-success' : 'btn-warning'"
+                                                (click)="toggleEditExercicio(exercicio)">
+                                                <i class="bi"
+                                                    [ngClass]="exercicio.isEditing ? 'bi-check-lg' : 'bi-pencil-fill'"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-acao"
+                                                (click)="deletarExercicio(treino, exercicio)">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </ng-container>
+                            <!-- Se não houver exercícios -->
+                            <ng-template #noExercicios>
+                                <p>Nenhum exercício cadastrado.</p>
+                            </ng-template>
+
+                            <!-- Botão para adicionar novo exercício -->
                             <div class="d-flex justify-content-center mt-3 mb-3">
-                                <button id="novoExercicio" data-toggle="modal" data-target="#addExercicioModal" class="btn btn-success"
-                                    (click)="adicionarExercicio(treino)">
-                                    <i class="bi bi-plus-circle"></i>
+                                <button id="novoExercicio" data-toggle="modal" data-target="#addExercicioModal"
+                                    class="btn btn-success" (click)="adicionarExercicio(treino, selectedUser.idUser)">
+                                    <i class="bi bi-plus-circle"></i> Adicionar Exercício
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="d-flex justify-content-center mt-3 mb-3">
-                <button id="novoTreino" class="btn btn-success" (click)="adicionarTreino()">
-                  <i class="bi bi-plus-circle"></i> Adicionar Treino
-                </button>
-              </div>
-              
-        </section>
-        <section *ngIf="!selectedUser" class="user-undefined"><span>Nenhum usuário selecionado</span></section>
-    </main>
+
+        </div>
+    </section>
+
+    <section *ngIf="!selectedUser" class="user-undefined">
+        <span>Nenhum usuário selecionado</span>
+    </section>
+</main>
 </div>
