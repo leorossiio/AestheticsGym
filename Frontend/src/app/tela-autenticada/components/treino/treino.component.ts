@@ -59,11 +59,7 @@ export class TreinoComponent implements OnInit {
     // );
   }
 
-  ajustarAlturaTextArea(event: any): void {
-    const textArea = event.target;
-    textArea.style.height = 'auto';
-    textArea.style.height = textArea.scrollHeight + 'px';
-  }
+  
 
 
 }
