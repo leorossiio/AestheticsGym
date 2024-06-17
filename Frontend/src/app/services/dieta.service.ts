@@ -21,7 +21,11 @@ export class DietaService {
     return this.http.get<any[]>(`${this.baseUrl}/dieta/listarDietas`, { headers: this.getAuthHeaders() });
   }
 
-  listarDietaByUser(idUser: string): Observable<any[]> {
+  listarDietaByUserLogado(idUser: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/dieta/listarDietasPorUsuario/${idUser}`, { headers: this.getAuthHeaders() });
+  }
+
+  listarDietaByUserSelecionado(idUser: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/dieta/listarDietasPorUsuario/${idUser}`, { headers: this.getAuthHeaders() });
   }
 

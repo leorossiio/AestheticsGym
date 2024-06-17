@@ -43,7 +43,7 @@ export class NutricaoListaComponent implements OnInit {
 
   carregarDietas(): void {
     const idUser = this.authService.getUserId(); // Obter o ID do usuário autenticado
-    this.dietaService.listarDietaByUser(idUser).subscribe( // Passar o idUser como argumento
+    this.dietaService.listarDietaByUserLogado(idUser).subscribe( // Passar o idUser como argumento
       (data: any[]) => {
         this.processarDietas(data);
       },
