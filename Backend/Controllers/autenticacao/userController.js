@@ -1,13 +1,13 @@
-const bcryptjs = require("bcryptjs") // Biblioteca para criptografar senhas
-const express = require("express") // Framework para construir a aplicação web
-const auth = require("../../middlewares/authentication") // Middleware para rotas autenticadas
-const UserModel = require("../../models/User") // Modelo de dados do usuário
-const { v4: uuidv4 } = require("uuid") // Biblioteca para gerar UUIDs
-const crypto = require("crypto") // Biblioteca para criar hashes
+const bcryptjs = require("bcryptjs")
+const express = require("express")
+const auth = require("../../middlewares/authentication")
+const UserModel = require("../../models/User")
+const { v4: uuidv4 } = require("uuid")
+const crypto = require("crypto")
 
-const userController = express.Router() // Router do Express para gerenciar rotas relacionadas a usuários
+const userController = express.Router()
 
-const dataAtual = new Date() // Captura a data e hora atual
+const dataAtual = new Date()
 
 // Ajusta a data e hora para o fuso horário do Brasil (UTC-3)
 const offsetBrasil = -3
@@ -39,10 +39,8 @@ userController.post("/cadastroUsuarioNaoAutenticada", async (req, res) => {
       })
     }
 
-    // Gera um ID único de 24 caracteres
     let idUser = generateId()
 
-    // Verifica se o nome de usuário ou email já existe
     const usuarioExistente = await UserModel.findOne({
       $or: [{ nome: nome }, { email: email }],
     })
@@ -54,19 +52,18 @@ userController.post("/cadastroUsuarioNaoAutenticada", async (req, res) => {
 
     // Criptografa a senha
     const senhaEncrypt = await bcryptjs.hash(senha, 10)
-    const funcaoNome = "ALUNO" // Fixo como "Aluno" para cadastro não autenticado
+    const funcaoNome = "ALUNO"
 
-    // Cria um novo usuário
     const user = {
       idUser: idUser,
       nome: nome,
       email: email,
       senha: senhaEncrypt,
       funcao: funcaoNome,
-      dataCriacao: dataAtualBrasil // Adicionando a data de criação
+      dataCriacao: dataAtualBrasil
     }
 
-    await UserModel.create(user) // Salva o usuário no banco de dados
+    await UserModel.create(user)
     return res.status(201).json({
       mensagem: "Usuário criado com sucesso!",
     })
@@ -97,7 +94,7 @@ userController.get("/usuariosPorFuncao", auth, async (req, res) => {
       {
         $group: {
           _id: "$funcao",
-          total: { $sum: 1 }, // Total de usuários por função
+          total: { $sum: 1 },
         },
       },
     ])
@@ -130,16 +127,15 @@ userController.get("/:email", auth, async (req, res) => {
 
 // Rota para deletar um usuário específico pelo ID
 userController.delete("/:idUser", auth, async (req, res) => {
-  const idUser = req.params.idUser // Captura o idUser
+  const idUser = req.params.idUser
   try {
     const user = await UserModel.findOne({ idUser: idUser })
-    // Se o usuário não existir:
+
     if (!user) {
       return res.status(404).json({ mensagem: "Usuário não encontrado" })
     }
-    // Se existir: Remove o usuário
     await UserModel.findOneAndDelete({ idUser: idUser })
-    // Retorna uma mensagem de sucesso
+
     return res.status(200).json({ mensagem: "Usuário deletado com sucesso" })
   } catch (err) {
     console.error(`Um erro ocorreu ao deletar o usuário. ${err}`)
@@ -164,10 +160,8 @@ userController.post("/cadastroUsuarioAutenticada", auth, async (req, res) => {
       })
     }
 
-    // Gera um ID único de 24 caracteres
     let idUser = generateId()
 
-    // Verifica se o nome de usuário ou email já existe
     const usuarioExistente = await UserModel.findOne({
       $or: [{ nome: nome }, { email: email }],
     })
@@ -177,21 +171,19 @@ userController.post("/cadastroUsuarioAutenticada", auth, async (req, res) => {
       })
     }
 
-    // Criptografa a senha
     const senhaEncrypt = await bcryptjs.hash(senha, 10)
-    const funcaoNome = funcao // "ALUNO" ou "PROFESSOR" conforme fornecido
+    const funcaoNome = funcao
 
-    // Cria um novo usuário
     const user = {
       idUser: idUser,
       nome: nome,
       email: email,
       senha: senhaEncrypt,
       funcao: funcaoNome,
-      dataCriacao: dataAtualBrasil // Adicionando a data de criação
+      dataCriacao: dataAtualBrasil
     }
 
-    await UserModel.create(user) // Salva o usuário no banco de dados
+    await UserModel.create(user)
     return res.status(201).json({
       mensagem: "Usuário criado com sucesso!",
     })
@@ -204,17 +196,15 @@ userController.post("/cadastroUsuarioAutenticada", auth, async (req, res) => {
 
 // Rota para editar usuário:
 userController.put("/editarUsuario/:idUser", auth, async (req, res) => {
-  const idUser = req.params.idUser // Captura o ID do usuário
+  const idUser = req.params.idUser
   const { nome, email, funcao } = req.body
 
   try {
-    // Verifica se o usuário existe com base no ID
     const user = await UserModel.findOne({ idUser: idUser })
     if (!user) {
       return res.status(404).json({ mensagem: "Usuário não encontrado" })
     }
 
-    // Atualiza os campos do usuário
     if (nome) user.nome = nome
     if (email) user.email = email
     if (funcao) {
@@ -226,7 +216,6 @@ userController.put("/editarUsuario/:idUser", auth, async (req, res) => {
       user.funcao = funcao
     }
 
-    // Salva as alterações
     await user.save()
 
     return res.status(200).json({ mensagem: "Usuário atualizado com sucesso" })
@@ -236,4 +225,4 @@ userController.put("/editarUsuario/:idUser", auth, async (req, res) => {
   }
 })
 
-module.exports = userController // Exporta o router para ser utilizado na aplicação principal
+module.exports = userController

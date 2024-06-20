@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const { v4: uuidv4 } = require("uuid"); // Biblioteca para gerar UUIDs
+const mongoose = require("mongoose")
+const { v4: uuidv4 } = require("uuid")
 
 const ExercicioSchema = new mongoose.Schema({
   idExercicio: { type: String, default: uuidv4, unique: true, required: true },
@@ -8,8 +8,8 @@ const ExercicioSchema = new mongoose.Schema({
   repeticao: { type: Number, required: true },
   descricao: { type: String, required: true },
   idTreino: { type: mongoose.Schema.Types.String, ref: 'Treino', required: true }
-});
+})
 
-const ExercicioModel = mongoose.model("Exercicio", ExercicioSchema);
+const ExercicioModel = mongoose.model("Exercicio", ExercicioSchema)
 
-module.exports = ExercicioModel;
+module.exports = ExercicioModel

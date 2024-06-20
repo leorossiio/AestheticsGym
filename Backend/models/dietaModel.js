@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const { v4: uuidv4 } = require("uuid"); // Biblioteca para gerar UUIDs
+const mongoose = require("mongoose")
+const { v4: uuidv4 } = require("uuid")
 
 const DietaSchema = new mongoose.Schema({
   idDieta: { type: String, default: uuidv4, unique: true, required: true },
@@ -13,8 +13,8 @@ const DietaSchema = new mongoose.Schema({
   },
   horarioRefeicao: { type: String, required: true },
   idUser: { type: mongoose.Schema.Types.String, ref: 'User', required: true }
-});
+})
 
-const DietaModel = mongoose.model("Dieta", DietaSchema);
+const DietaModel = mongoose.model("Dieta", DietaSchema)
 
-module.exports = DietaModel;
+module.exports = DietaModel
