@@ -68,7 +68,6 @@ export class NutricaoListaComponent implements OnInit {
       });
       return acc;
     }, {} as PlanosSemana);
-    console.log('Planos de semana:', this.planosSemana); // Adicionar console.log aqui
   }
 
   get planoDoDia(): PlanoNutricional {

@@ -68,7 +68,6 @@ export class NutricaoCadastroComponent implements OnInit {
     this.userService.listarUsuarios().subscribe({
       next: (data) => {
         this.users = data;
-        console.log('Usuários carregados:', this.users);
       },
       error: (error) => {
         console.error('Erro ao carregar usuários:', error);

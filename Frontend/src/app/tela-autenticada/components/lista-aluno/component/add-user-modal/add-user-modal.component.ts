@@ -46,7 +46,6 @@ export class AddUserModalComponent {
         .subscribe(
           (response: any) => {
             console.log("Novo usuário autenticado cadastrado com sucesso!");
-            console.log(response);
             this.showConfirmationMessage = true;
             this.showErrorMessage = false;
             this.isFormSubmitted = true;

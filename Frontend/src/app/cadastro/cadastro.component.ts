@@ -43,8 +43,6 @@ export class CadastroComponent {
       this.userService.cadastroNaoAutenticado(userData)
         .subscribe(
           (response: any) => {
-            console.log("Novo usuário cadastrado com sucesso!")
-            console.log(response);
             this.showConfirmationMessage = true;
             this.isFormSubmitted = true;
             setTimeout(() => {
@@ -52,7 +50,6 @@ export class CadastroComponent {
             }, 1500);
           },
           (error) => {
-            console.error("Erro ao cadastrar usuário:", error);
             this.showErrorMessage = true;
             setTimeout(() => {
               this.showErrorMessage = false;

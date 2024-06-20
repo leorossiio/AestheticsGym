@@ -14,7 +14,6 @@ class AuthorizationGuard {
   ) { }
   canActivateProfessor(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     const userRole = this.authService.getUserRole();
-    console.log('Função do usuário:', userRole);
     if (userRole === "PROFESSOR") {
       return true;
     } else {

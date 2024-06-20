@@ -37,11 +37,8 @@ export class LoginComponent {
           localStorage.setItem('token', response.token);
         
           if (response.funcao) {
-            console.log('Função do usuário:', response.funcao);
             this.authService.redirecionarUsuario(response.funcao);
-          } else {
-          
-            console.error("Função do usuário não retornado pela API.");
+          } else {                 
           }
         },
         error => {
